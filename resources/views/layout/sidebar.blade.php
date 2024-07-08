@@ -17,6 +17,37 @@
 					<li><a href="index.html"><i class="icon-Commit"><span class="path1"></span><span class="path2"></span></i>Dashboard 1</a></li>
 				  </ul>
 				</li>
+
+				@if(view_permission('company'))
+					<li class="treeview">
+						<a href="#">
+						  <i class="icon-User"></i>
+						  <span>Companies</span>
+						  <span class="pull-right-container">
+							<i class="fa fa-angle-right pull-right"></i>
+						  </span>
+						</a>
+						<ul class="treeview-menu">
+						  <li><a href="{{ route('companies.create') }}"><i class="icon-Commit"><span class="path1"></span><span class="path2"></span></i>Add New</a></li>
+						  <li><a href="{{ route('companies.list') }}"><i class="icon-Commit"><span class="path1"></span><span class="path2"></span></i>List</a></li>
+						</ul>
+					</li>
+				@endif
+
+				<li class="treeview">
+					<a href="#">
+					  <i class="icon-User"></i>
+					  <span>Users</span>
+					  <span class="pull-right-container">
+						<i class="fa fa-angle-right pull-right"></i>
+					  </span>
+					</a>
+					<ul class="treeview-menu">
+					  <li><a href="{{ route('users.create') }}"><i class="icon-Commit"><span class="path1"></span><span class="path2"></span></i>Add New</a></li>
+					  <li><a href="{{ route('users.list') }}"><i class="icon-Commit"><span class="path1"></span><span class="path2"></span></i>List</a></li>
+					</ul>
+				</li>
+
 				<li class="treeview">
 				  <a href="#">
 					<i class="icon-Clipboard-check"><span class="path1"></span><span class="path2"></span><span class="path3"></span></i>
@@ -30,58 +61,6 @@
 					<li><a href=" {{ route('sample') }}"><i class="icon-Commit"><span class="path1"></span><span class="path2"></span></i>Order Details</a></li>
 				  </ul>
 				</li>
-				{{-- <li class="treeview">
-				  <a href="#">
-					<i class="icon-Dinner"><span class="path1"></span><span class="path2"></span><span class="path3"></span><span class="path4"></span><span class="path5"></span></i>
-					<span>Menus</span>
-					<span class="pull-right-container">
-					  <i class="fa fa-angle-right pull-right"></i>
-					</span>
-				  </a>
-				  <ul class="treeview-menu">
-					<li><a href="add_new_menu.html"><i class="icon-Commit"><span class="path1"></span><span class="path2"></span></i>Add New Menu</a></li>
-					<li><a href="menu_list.html"><i class="icon-Commit"><span class="path1"></span><span class="path2"></span></i>Menu List</a></li>
-					<li><a href="menu_categories.html"><i class="icon-Commit"><span class="path1"></span><span class="path2"></span></i>Categories</a></li>
-				  </ul>
-				</li> --}}
-				{{-- <li class="treeview">
-				  <a href="#">
-					<i class="icon-Group"><span class="path1"></span><span class="path2"></span></i>
-					<span>Customer</span>
-					<span class="pull-right-container">
-					  <i class="fa fa-angle-right pull-right"></i>
-					</span>
-				  </a>
-				  <ul class="treeview-menu">
-					<li><a href="customer.html"><i class="icon-Commit"><span class="path1"></span><span class="path2"></span></i>Customer list</a></li>
-					<li><a href="members.html"><i class="icon-Commit"><span class="path1"></span><span class="path2"></span></i>Members</a></li>
-				  </ul>
-				</li>
-				<li>
-				  <a href="analysis.html">
-					<i class="icon-Chart-line"><span class="path1"></span><span class="path2"></span></i>
-					<span>Analysis</span>
-				  </a>
-				</li>
-				<li class="treeview">
-				  <a href="#">
-					<i class="icon-Cart"><span class="path1"></span><span class="path2"></span></i>
-					<span>Online Store</span>
-					<span class="pull-right-container">
-					  <i class="fa fa-angle-right pull-right"></i>
-					</span>
-				  </a>
-				  <ul class="treeview-menu">
-					<li><a href="ecommerce_products.html"><i class="icon-Commit"><span class="path1"></span><span class="path2"></span></i>Products</a></li>
-					<li><a href="ecommerce_cart.html"><i class="icon-Commit"><span class="path1"></span><span class="path2"></span></i>Products Cart</a></li>
-					<li><a href="ecommerce_products_edit.html"><i class="icon-Commit"><span class="path1"></span><span class="path2"></span></i>Products Edit</a></li>
-					<li><a href="ecommerce_details.html"><i class="icon-Commit"><span class="path1"></span><span class="path2"></span></i>Product Details</a></li>
-					<li><a href="ecommerce_orders.html"><i class="icon-Commit"><span class="path1"></span><span class="path2"></span></i>Product Orders</a></li>
-					<li><a href="ecommerce_checkout.html"><i class="icon-Commit"><span class="path1"></span><span class="path2"></span></i>Products Checkout</a></li>
-					<li><a href="invoice.html"><i class="icon-Commit"><span class="path1"></span><span class="path2"></span></i>Invoice</a></li>
-					<li><a href="invoicelist.html"><i class="icon-Commit"><span class="path1"></span><span class="path2"></span></i>Invoice List</a></li>	
-				  </ul>
-				</li>					      --}}
 			  </ul>
 			  
 			  <div class="sidebar-widgets">

@@ -15,3 +15,7 @@
 <!-- Riday Admin App -->
 <script src="{{ asset('assets/theme/js/template.js') }}"></script>
 <script src="{{ asset('assets/theme/js/pages/dashboard.js') }}"></script>
+
+<!-- Validations -->
+<script src="{{ asset('assets/theme/js/pages/validation.js')}}"></script>
+<script src="{{ asset('assets/theme/js/pages/form-validation.js')}}"></script>
