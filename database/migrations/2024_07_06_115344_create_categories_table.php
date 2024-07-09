@@ -3,25 +3,31 @@
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
+use App\Models\Category; // Import the Category model
 
-return new class extends Migration
+class CreateCategoriesTable extends Migration
 {
-    /**
-     * Run the migrations.
-     */
-    public function up(): void
+    public function up()
     {
         Schema::create('categories', function (Blueprint $table) {
             $table->id();
+            $table->string('name');
+            $table->text('desc');
+            $table->tinyInteger('type')->default(Category::getCategoryTypes()['CATEGORY']);
+            $table->string('icon_file')->nullable();
+            $table->string('background_image')->nullable();
+            $table->string('slug')->unique();
+            $table->string('status')->default(Category::getCategoryStatuses()['DRAFT']);
             $table->timestamps();
+            $table->unsignedBigInteger('parent_id');
+            $table->unsignedBigInteger('created_by');
+            $table->unsignedBigInteger('updated_by')->nullable();
+            $table->softDeletes();
         });
     }
 
-    /**
-     * Reverse the migrations.
-     */
-    public function down(): void
+    public function down()
     {
         Schema::dropIfExists('categories');
     }
-};
+}
