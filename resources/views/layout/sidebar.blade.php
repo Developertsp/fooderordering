@@ -51,14 +51,14 @@
 				<li class="treeview">
 				  <a href="#">
 					<i class="icon-Clipboard-check"><span class="path1"></span><span class="path2"></span><span class="path3"></span></i>
-					<span>Order</span>
+					<span>Categories</span>
 					<span class="pull-right-container">
 					  <i class="fa fa-angle-right pull-right"></i>
 					</span>
 				  </a>
 				  <ul class="treeview-menu">
-					<li><a href="order.html"><i class="icon-Commit"><span class="path1"></span><span class="path2"></span></i>Order List</a></li>
-					<li><a href=" {{ route('sample') }}"><i class="icon-Commit"><span class="path1"></span><span class="path2"></span></i>Order Details</a></li>
+					<li><a href="{{ route('category') }}"><i class="icon-Commit"><span class="path1"></span><span class="path2"></span></i>Categories Page</a></li>
+					{{-- <li><a href=" {{ route('sample') }}"><i class="icon-Commit"><span class="path1"></span><span class="path2"></span></i>Order Details</a></li> --}}
 				  </ul>
 				</li>
 			  </ul>
