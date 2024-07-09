@@ -305,7 +305,7 @@
 					</span>
 				  </a>
 				  <ul class="treeview-menu">
-					<li><a href="order.html"><i class="icon-Commit"><span class="path1"></span><span class="path2"></span></i>Category List</a></li>
+					<li><a href="{{ route('addcategory') }}"><i class="icon-Commit"><span class="path1"></span><span class="path2"></span></i>Category List</a></li>
 					<li><a href="order_details.html"><i class="icon-Commit"><span class="path1"></span><span class="path2"></span></i>Order Details</a></li>
 				  </ul>
 				</li>
@@ -318,7 +318,7 @@
 					</span>
 				  </a>
 				  <ul class="treeview-menu">
-					<li><a href="{{ route('addcategory') }}"><i class="icon-Commit"><span class="path1"></span><span class="path2"></span></i>Add New Category</a></li>
+					<li><a href="order_details.html"><i class="icon-Commit"><span class="path1"></span><span class="path2"></span></i>Add Menu</a></li>
 					<li><a href="menu_list.html"><i class="icon-Commit"><span class="path1"></span><span class="path2"></span></i>Menu List</a></li>
 					<li><a href="menu_categories.html"><i class="icon-Commit"><span class="path1"></span><span class="path2"></span></i>Categories</a></li>
 				  </ul>
