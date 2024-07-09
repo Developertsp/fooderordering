@@ -5,6 +5,7 @@ use Illuminate\Support\Facades\Auth;
 use App\Http\Controllers\CompanyController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\CategoryController;
 
 Auth::routes();
 
@@ -14,6 +15,14 @@ Route::group(['middleware' => ['auth']], function(){
     Route::get('sample', function () {
         return view('sample');
     })->name('sample');
+
+    Route::get('category', function () {
+        return view('category');
+    })->name('category');
+
+    Route::get('addcategory', function () {
+        return view('addcategory');
+    })->name('addcategory');
 
     // Users Routes
     Route::get('users', [UserController::class, 'index'])->name('users.list');
@@ -31,3 +40,10 @@ Route::group(['middleware' => ['auth']], function(){
     Route::post('companies/update', [CompanyController::class, 'update'])->name('companies.update');
     Route::delete('companies/destroy/{id}', [CompanyController::class, 'destroy'])->name('companies.destroy');
 });
+
+Route::group(['prefix' => 'categories'], function () {
+    Route::get('/', [CategoryController::class, 'index'])->name('categories.index');
+    Route::post('/store', [CategoryController::class, 'store'])->name('categories.store');
+    Route::get('/addcategory', [CategoryController::class, 'add']);
+});
+
