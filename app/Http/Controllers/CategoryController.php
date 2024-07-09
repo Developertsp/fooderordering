@@ -5,17 +5,27 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Category;
 use App\Constants\MyConstants;
+use App\Models\User;
 
 class CategoryController extends Controller
 {
     public function index()
     {
-        $categories = Category::all();
-        return view('categories.index', compact('categories'));
+        $categories = Category::with('createdByUser')->get();
+        return view('categories.category', compact('categories'));
     }
 
+    public function show(Category $category)
+    {
+        // Fetch the user names for created_by and updated_by
+        $createdByUser = User::find($category->created_by);
+        $updatedByUser = User::find($category->updated_by);
+
+        return view('categories.addcategory', compact('category', 'createdByUser', 'updatedByUser'));
+    }
     public function store(Request $request)
     {
+        dd($request->all());
         // Validate the incoming request data
         $validatedData = $request->validate([
             'name' => 'required|string|max:255',

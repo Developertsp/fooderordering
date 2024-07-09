@@ -14,6 +14,16 @@ class Category extends Model
         'name', 'type', 'icon_file', 'background_image', 'slug', 'status', 'description', 'created_by', 'updated_by'
     ];
 
+        // Relationships
+        public function createdByUser()
+        {
+            return $this->belongsTo(User::class, 'created_by');
+        }
+    
+        public function updatedByUser()
+        {
+            return $this->belongsTo(User::class, 'updated_by');
+        }
     // Use constants directly from MyConstants class
     public static function getCategoryTypes()
     {

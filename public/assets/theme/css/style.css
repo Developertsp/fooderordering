@@ -437,6 +437,7 @@ img {
   padding: 20px;
   background-color: #ffffff; }
 
+  .preview
 code {
   border: 1px solid #f3f6f9;
   background-color: #ffffff;
@@ -31382,7 +31383,9 @@ time {
   position: relative;
   transition: all 1s ease; }
   .product-img img {
-    max-width: 250px; }
+    max-width: 50px;
+    height: 50px;
+  }
   .product-img .pro-img-overlay a {
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
     display: inline-block;
@@ -37888,6 +37891,10 @@ button.btn.dropdown-toggle:after {
   width: 25px;
   border-radius: 0; }
 
+/* .product-img {
+  height: 50px;
+  width: 50px;
+} */
 img.away {
   border-left-color: #ffc40d !important; }
 
