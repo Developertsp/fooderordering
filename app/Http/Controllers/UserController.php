@@ -10,21 +10,37 @@ use App\Models\Company;
 
 class UserController extends Controller
 {
+    protected $constants;
+
+    public function __construct()
+    {
+        $this->constants = config('constants');
+    }
+
     public function index()
     {
-        $data['users'] = User::where('is_enable', 1)->get();
+        $user = Auth::user();
+        if(is_software_manager()){
+            $data['users'] = User::with('company')->where('is_enable', 1)->get();
+        }
+        else{
+            $data['users'] = User::where('is_enable', 1)->where('company_id', $user->company_id)->get();
+        }
+        
         return view('users.list', $data);
     }
 
     public function create()
     {
-        if(Auth::user()->role == 1){
+        $data['roles'] = $this->constants['USER_ROLES_NAME'];
+
+        if(Auth::user()->role == $this->constants['SOFTWARE_MANAGER']){
             $data['companies'] = Company::where('is_enable', 1)->get();
         }
         else{
             $data['companies'] = Company::where('id', Auth::user()->company_id)->where('is_enable', 1)->get();
+            unset($data['roles'][2]);
         }
-        $data['roles'] = config('constants.USER_ROLES_NAME');
         unset($data['roles'][1]);
         return view('users.create', $data);
     }
@@ -44,7 +60,7 @@ class UserController extends Controller
         $user->email        = $request->email;
         $user->password     = Hash::make($request->password);
         $user->company_id   = $request->company;
-        $user->role        = $request->role;
+        $user->role         = $request->role;
         $user->created_by   = Auth::id();
 
         $response = $user->save();

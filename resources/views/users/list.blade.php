@@ -43,7 +43,7 @@
                                         <tr class="hover-primary">
                                             <td>{{ $user->name }}</td>
                                             <td>{{ $user->email }}</td>
-                                            <td>{{ $user->company_id }}</td>
+                                            <td>{{ $user->company->name ?? '' }}</td>
                                             <td>{{ config('constants.USER_ROLES_NAME')[$user->role]}}</td>
                                         </tr>
                                     @endforeach

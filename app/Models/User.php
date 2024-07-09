@@ -24,4 +24,9 @@ class User extends Authenticatable
         'password',
         'created_by',
     ];
+
+    public function company()
+    {
+        return $this->belongsTo(Company::class);
+    }
 }
