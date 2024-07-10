@@ -19,8 +19,8 @@ class CreateCategoriesTable extends Migration
             $table->string('slug')->unique();
             $table->string('status')->default(Category::getCategoryStatuses()['DRAFT']);
             $table->timestamps();
-            $table->unsignedBigInteger('parent_id');
-            $table->unsignedBigInteger('created_by');
+            $table->unsignedBigInteger('parent_id')->nullable();
+            $table->unsignedBigInteger('created_by')->nullable();
             $table->unsignedBigInteger('updated_by')->nullable();
             $table->softDeletes();
         });
