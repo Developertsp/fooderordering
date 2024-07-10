@@ -1,7 +1,5 @@
 @extends('layout.app')
 @section('title', 'Categories | FO - Food Ordering System')
-{{-- @section('pageTitle', 'Dashboard')
-@section('breadcrumTitle', 'User Dashboard') --}}
 
 @section('content')
 
@@ -10,167 +8,70 @@
             display: none;
         }
     </style>
-
     <!-- Content Header (Page header) -->	  
     <div class="content-header">
         <div class="d-flex align-items-center">
             <div class="me-auto">
-                <h4 class="page-title">Create category</h4>
+                <h4 class="page-title">All Categories</h4>
                 <div class="d-inline-block align-items-center">
                     <nav>
                         <ol class="breadcrumb">
                             <li class="breadcrumb-item"><a href="#"><i class="mdi mdi-home-outline"></i></a></li>
-                            <li class="breadcrumb-item" aria-current="page">Users</li>
-                            <li class="breadcrumb-item active" aria-current="page">Create Category</li>
+                            <li class="breadcrumb-item" aria-current="page">Categories</li>
+                            <li class="breadcrumb-item active" aria-current="page">Categories</li>
                         </ol>
                     </nav>
                 </div>
             </div>
-            
         </div>
     </div>
 
     <!-- Main content -->
     <section class="content">
-        <!-- Basic Forms -->
-        <div class="box">
-            <!-- /.box-header -->
-            <div class="box-body">
-                <div class="row">
-                    <div class="col">
-						<form method = "POST" action="{{ route('category.store') }}"  enctype="multipart/form-data">
-                            @csrf
-							<div class="row">
-								<div class="col-md-6">
-									<div class="form-group">
-									  <label class="fw-700 fs-16 form-label">Category Name</label>
-									  <input type="text" class="form-control" name="name" placeholder="Category Name">
-									</div>
-								</div>
-								<!--/span-->
-								<div class="col-md-6">
-									<div class="form-group">
-										<label class="fw-700 fs-16 form-label">Slug</label>
-										<input type="text" class="form-control" name="slug" placeholder="Slug">
-									 </div>
-								</div>
-								<!--/span-->
-								<div class="col-md-6">
-									<div class="form-group">
-										<label class="fw-700 fs-16 form-label">Type</label>
-										<select class="form-select" name="type" data-placeholder="Choose a Category" tabindex="1">
-											<option value="Category 1">Category</option>
-											<option value="Category 2">Sub Category</option>
-										</select>
-									</div>
-								</div>
-								<div class="col-md-6">
-									<div class="form-group">
-										<label class="fw-700 fs-16 form-label">Status</label>
-										<div class="radio-list">
-											<label class="radio-inline p-0 me-10">
-												<div class="radio radio-info">
-													<input type="radio" name="status" id="radio1" value="option1">
-													<label for="radio1">Active</label>
-												</div>
-											</label>
-											<label class="radio-inline">
-												<div class="radio radio-info">
-													<input type="radio" name="status" id="radio2" value="option2">
-													<label for="radio2">Unactive</label>
-												</div>
-											</label>
-											<label class="radio-inline">
-												<div class="radio radio-info">
-													<input type="radio" name="status" id="radio2" value="option2">
-													<label for="radio2">Draft</label>
-												</div>
-											</label>
-										</div>
-									</div>
-								</div>
-								<div class="col-md-12">
-									<div class="form-group">
-										<label class="fw-700 fs-16 form-label">Description</label>
-										<textarea class="form-control p-20" name="desc" rows="2" placeholder="Description"></textarea>
-									</div>
-								</div>
-								{{-- <div class="col-md-6">
-									<div class="form-group">
-										<label class="fw-700 fs-16 form-label">Created By</label>
-										<input type="text" name="created_by" class="form-control"> </div>
-								</div>
-								<div class="col-md-6">
-									<div class="form-group">
-										<label class="fw-700 fs-16 form-label">Updated By</label>
-										<input type="text" name="updated_by "class="form-control"> </div>
-								</div> --}}
-									<div class="col-md-6">
-										<h4 class="box-title mt-20">Uploaded Icon</h4>
-										<div class="product-img text-start">
-											<img id="preview-icon" src="{{ asset('images/product-placeholder.png') }}" alt="" class="mb-15 preview-image">
-											<p>Upload Icon</p>
-											<div class="btn btn-info mb-20">
-												<input type="file" class="upload" id="icon_file" name="icon_file">
-											</div>
-											<button class="btn btn-danger delete-file">Delete</button>
-										</div>
-									</div>
-									<!--/span-->
-									<div class="col-md-6">
-										<h4 class="box-title mt-20">Uploaded Image</h4>
-										<div class="product-img text-start">
-											<img id="preview-image" src="{{ asset('images/product-placeholder.png') }}" alt="" class="mb-15 preview-image">
-											<p>Upload Image</p>
-											<div class="btn btn-info mb-20">
-												<input type="file" class="upload" id="background_image" name="background_image">
-											</div>
-											<button class="btn btn-danger delete-file">Delete</button>
-										</div>
-									</div>
-								<div class="form-actions mt-10">
-									<button type="submit" class="btn btn-primary"> <i class="fa fa-check"></i> Save / Add</button>
-								</div>
-                        </form>
+        @foreach($categories as $category)
+            @if($category->type == 1)
+                <div class="section mb-30">
+                    <h2 class="shadow-lg p-10 mb-30">{{ $category->name }}</h2>
+                    <div class="row">
+                        @foreach($categories as $subcategory)
+                            @if($subcategory->type == 2 && $subcategory->parent_id == $category->id)
+                                <div class="col-xxxl-4 col-xl-3 col-lg-3 col-12">
+                                    <div class="box overflow-h">
+                                        <div class="box-body pt-10 pl-10">
+                                            <div>
+                                                <img src="{{ asset('storage/' . $subcategory->background_image) }}" alt="Image Description">
+
+                                            </div>
+                                        </div>
+                                        <div class="box-body">
+                                            <div class="info-content">
+                                                <h4 class="mb-10 mt-0">{{ $subcategory->name }}</h4>
+                                                <div class="d-flex justify-content-between align-items-center">
+                                                    <h4 class="mb-0 text-primary">{{ $subcategory->slug }}</h4>
+                                                    <div class="d-flex align-items-center">    
+                                                        <span class="fs-18 mx-10 text-primary icon-{{ $subcategory->icon }}"><span class="path1"></span><span class="path2"></span><span class="path3"></span></span>
+                                                        <h5 class="text-black mb-0">
+                                                            @if($subcategory->status == 1)
+                                                                <span class="status-dot status-active"></span> Active
+                                                            @elseif($subcategory->status == 2)
+                                                                <span class="status-dot status-inactive"></span> Inactive
+                                                            @elseif($subcategory->status == 3)
+                                                                <span class="status-dot status-draft"></span> Draft
+                                                            @endif
+                                                        </h5>
+                                                    </div>
+                                                </div>
+                                                <p>{{ $subcategory->desc }}</p>
+                                            </div>
+                                        </div>                          
+                                    </div>
+                                </div>
+                            @endif
+                        @endforeach
                     </div>
-					<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
-					<script>
-						$(document).ready(function() {
-							// Handle icon_file input change
-							$('#icon_file').on('change', function() {
-								previewImage(this, '#preview-icon');
-							});
-					
-							// Handle background_image input change
-							$('#background_image').on('change', function() {
-								previewImage(this, '#preview-image');
-							});
-					
-							// Function to preview selected image
-							function previewImage(input, previewId) {
-								var reader = new FileReader();
-								reader.onload = function(e) {
-									$(previewId).attr('src', e.target.result);
-								}
-								reader.readAsDataURL(input.files[0]);
-							}
-							
-							// Handle delete button click
-							$('.delete-file').on('click', function() {
-								var inputId = $(this).siblings('.btn-info').children('input').attr('id');
-								$('#' + inputId).val(''); // Clear the file input
-								$(this).siblings('.preview-image').attr('src', '{{ asset('images/product-placeholder.png') }}'); // Reset preview image
-							});
-						});
-					</script>
-                    <!-- /.col -->
                 </div>
-                <!-- /.row -->
-            </div>
-            <!-- /.box-body -->
-        </div>
-        <!-- /.box -->
+            @endif
+        @endforeach
     </section>
     <!-- /.content -->
-
 @endsection

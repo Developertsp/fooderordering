@@ -20,7 +20,7 @@
                     <nav>
                         <ol class="breadcrumb">
                             <li class="breadcrumb-item"><a href="#"><i class="mdi mdi-home-outline"></i></a></li>
-                            <li class="breadcrumb-item" aria-current="page">Users</li>
+                            <li class="breadcrumb-item" aria-current="page">Categories</li>
                             <li class="breadcrumb-item active" aria-current="page">Create Category</li>
                         </ol>
                     </nav>
@@ -58,9 +58,22 @@
 								<div class="col-md-6">
 									<div class="form-group">
 										<label class="fw-700 fs-16 form-label">Type</label>
-										<select class="form-select" name="type" data-placeholder="Choose a Category" tabindex="1">
-											<option value="Category 1">Category</option>
-											<option value="Category 2">Sub Category</option>
+										<select class="form-select" name="type" data-placeholder="Choose a Category">
+											<option value="1">Category</option>
+											<option value="2">Sub Category</option>
+										</select>
+									</div>
+								</div>
+								<div class="col-md-6">
+									<div class="form-group">
+										<label class="fw-700 fs-16 form-label">Parent Category</label>
+										<select class="form-select" name="parent_id" data-placeholder="Choose a Parent Category">
+											<option value="">None</option>
+											@foreach($categories as $category)
+											   @if($category->type == 1)
+											     <option value="{{ $category->id }}">{{ $category->name }}</option>
+										       @endif
+											@endforeach
 										</select>
 									</div>
 								</div>
@@ -70,20 +83,20 @@
 										<div class="radio-list">
 											<label class="radio-inline p-0 me-10">
 												<div class="radio radio-info">
-													<input type="radio" name="status" id="radio1" value="option1">
+													<input type="radio" name="status" id="radio1" value="1">
 													<label for="radio1">Active</label>
 												</div>
 											</label>
 											<label class="radio-inline">
 												<div class="radio radio-info">
-													<input type="radio" name="status" id="radio2" value="option2">
+													<input type="radio" name="status" id="radio2" value="2">
 													<label for="radio2">Unactive</label>
 												</div>
 											</label>
 											<label class="radio-inline">
 												<div class="radio radio-info">
-													<input type="radio" name="status" id="radio2" value="option2">
-													<label for="radio2">Draft</label>
+													<input type="radio" name="status" id="radio3" value="3">
+													<label for="radio3">Draft</label>
 												</div>
 											</label>
 										</div>
@@ -113,7 +126,7 @@
 											<div class="btn btn-info mb-20">
 												<input type="file" class="upload" id="icon_file" name="icon_file">
 											</div>
-											<button class="btn btn-danger delete-file">Delete</button>
+											<button class="btn btn-danger delete-file mb-20">Delete</button>
 										</div>
 									</div>
 									<!--/span-->
@@ -125,7 +138,7 @@
 											<div class="btn btn-info mb-20">
 												<input type="file" class="upload" id="background_image" name="background_image">
 											</div>
-											<button class="btn btn-danger delete-file">Delete</button>
+											<button class="btn btn-danger delete-file mb-20">Delete</button>
 										</div>
 									</div>
 								<div class="form-actions mt-10">
