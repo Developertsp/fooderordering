@@ -17,13 +17,7 @@ Route::group(['middleware' => ['auth']], function(){
         return view('sample');
     })->name('sample');
 
-    Route::get('category', function () {
-        return view('category');
-    })->name('category');
-
-    Route::get('addcategory', function () {
-        return view('addcategory');
-    })->name('addcategory');
+   
 
     // Users Routes
     Route::get('users', [UserController::class, 'index'])->name('users.list');
@@ -40,16 +34,21 @@ Route::group(['middleware' => ['auth']], function(){
     Route::get('companies/edit/{id}', [CompanyController::class, 'edit'])->name('companies.edit');
     Route::post('companies/update', [CompanyController::class, 'update'])->name('companies.update');
     Route::delete('companies/destroy/{id}', [CompanyController::class, 'destroy'])->name('companies.destroy');
-
     // Restaurant Schedule
     Route::get('schedules', [RestaurantScheduleController::class, 'index'])->name('schedules.list');
     Route::get('schedules/create', [RestaurantScheduleController::class, 'create'])->name('schedules.create');
     Route::post('schedules/store', [RestaurantScheduleController::class, 'store'])->name('schedules.store');
 });
 
-Route::group(['prefix' => 'categories'], function () {
-    Route::get('/', [CategoryController::class, 'index'])->name('categories.index');
-    Route::post('/store', [CategoryController::class, 'store'])->name('categories.store');
-    Route::get('/addcategory', [CategoryController::class, 'add']);
+
+    //Category Routes
+    // Route::get('/show', [CategoryController::class, 'index'])->name('categories.index');
+    Route::get('/addcategory', [CategoryController::class, 'index'])->name('category');
+    Route::get('/category', [CategoryController::class, 'show'])->name('addcategory');
+    Route::post('category/store', [CategoryController::class, 'store'])->name('category.store');
+
+
 });
+
+   
 

@@ -75,12 +75,13 @@
 					</span>
 				  </a>
 				  <ul class="treeview-menu">
-					<li><a href="{{ route('category') }}"><i class="icon-Commit"><span class="path1"></span><span class="path2"></span></i>Categories Page</a></li>
+					<li><a href="{{ route('category') }}"><i class="icon-Commit"><span class="path1"></span><span class="path2"></span></i>Add Categories</a></li>
+					<li><a href="{{ route('addcategory') }}"><i class="icon-Commit"><span class="path1"></span><span class="path2"></span></i>Categories List</a></li>
 					{{-- <li><a href=" {{ route('sample') }}"><i class="icon-Commit"><span class="path1"></span><span class="path2"></span></i>Order Details</a></li> --}}
 				  </ul>
 				</li>
 			  </ul>
-			  
+
 			  <div class="sidebar-widgets">
 				  <div class="mx-25 mb-30 pb-20 side-bx bg-primary bg-food-dark rounded20">
 					<div class="text-center">

@@ -437,6 +437,7 @@ img {
   padding: 20px;
   background-color: #ffffff; }
 
+  .preview
 code {
   border: 1px solid #f3f6f9;
   background-color: #ffffff;
@@ -26143,7 +26144,7 @@ Height property
   transition: all 0.3s ease-in-out;
   overflow: hidden;
   border-radius: 0;
-  margin-right: 361px; }
+  margin-right: 0px; }
 
 @media (max-width: 767px) {
   .content-wrapper {
@@ -26327,7 +26328,7 @@ Height property
   max-height: 135px;
   z-index: 999;
   position: relative;
-  margin-right: 361px;
+  margin-right: 0px;
   -moz-transition: margin-left 0.3s ease-in-out;
   -o-transition: margin-left 0.3s ease-in-out;
   -webkit-transition: margin-left 0.3s ease-in-out;
@@ -31382,7 +31383,9 @@ time {
   position: relative;
   transition: all 1s ease; }
   .product-img img {
-    max-width: 250px; }
+    max-width: 50px;
+    height: 50px;
+  }
   .product-img .pro-img-overlay a {
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
     display: inline-block;
@@ -37888,6 +37891,10 @@ button.btn.dropdown-toggle:after {
   width: 25px;
   border-radius: 0; }
 
+/* .product-img {
+  height: 50px;
+  width: 50px;
+} */
 img.away {
   border-left-color: #ffc40d !important; }
 
@@ -38004,6 +38011,28 @@ img.away, img.busy, img.offline, img.online {
   line-height: 2.5em;
   border-radius: 50%;
   -webkit-mask-image: none; }
+ 
+/*Card Status Css*/
+
+.status-dot {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  display: inline-block;
+  margin-right: 5px;
+}
+
+.status-active {
+  background-color: green;
+}
+
+.status-inactive {
+  background-color: red;
+}
+
+.status-draft {
+  background-color: yellow;
+}
 
 .waves-block {
   display: block; }
