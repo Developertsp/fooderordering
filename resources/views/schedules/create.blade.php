@@ -35,11 +35,14 @@
                                     <div class="form-group row">
                                         <label for="example-time-input" class="col-sm-2 col-form-label">Day</label>
                                         <div class="row col-sm-10">
-                                            <div class="col-sm-6">
-                                                <label for="example-time-input" class="col-form-label">Start Time</label>
+                                            <div class="col-sm-5">
+                                                <label for="example-time-input" class="col-form-label">Opening Time</label>
                                             </div>
-                                            <div class="col-sm-6">
-                                                <label for="example-time-input" class="col-form-label">End Time</label>
+                                            <div class="col-sm-5">
+                                                <label for="example-time-input" class="col-form-label">Closing Time</label>
+                                            </div>
+                                            <div class="col-sm-2">
+                                                <label for="example-time-input" class="col-form-label">Is Closed</label>
                                             </div>
                                         </div>
                                     </div>
@@ -47,88 +50,19 @@
                                         <div class="form-group row">
                                             <label for="example-time-input" class="col-sm-2 col-form-label">{{ $day }}</label>
                                             <div class="row col-sm-10">
-                                                <div class="col-sm-6">
-                                                    <input class="form-control" type="time" value="" id="{{ strtolower($day) }}_opening_time" name="{{ strtolower($day) }}_opening_time">
+                                                <div class="col-sm-5">
+                                                    <input class="form-control" type="time" value="{{ $schedules[$day]['opening_time'] ?? '' }}" id="{{ strtolower($day) }}_opening_time" name="{{ strtolower($day) }}_opening_time">
                                                 </div>
-                                                <div class="col-sm-6">
-                                                    <input class="form-control" type="time" value="" id="{{ strtolower($day) }}_closing_time" name="{{ strtolower($day) }}_closing_time">
+                                                <div class="col-sm-5">
+                                                    <input class="form-control" type="time" value="{{ $schedules[$day]['closing_time'] ?? '' }}" id="{{ strtolower($day) }}_closing_time" name="{{ strtolower($day) }}_closing_time">
+                                                </div>
+                                                <div class="col-sm-2">
+                                                    <input type="checkbox" id="{{ strtolower($day) }}_is_closed" name="{{ strtolower($day) }}_is_closed" class="filled-in" {{ $schedules[$day]['is_closed'] ?? false ? 'checked' : '' }}/>
+                                                    <label for="{{ strtolower($day) }}_is_closed"></label>
                                                 </div>
                                             </div>
                                         </div>
                                     @endforeach
-                                    
-                                    
-                                    {{-- <div class="form-group row">
-                                        <label for="example-time-input" class="col-sm-2 col-form-label">Tuesday</label>
-                                        <div class="row col-sm-10">
-                                            <div class="col-sm-6">
-                                                <input class="form-control" type="time" value="" id="example-time-input" name="tue_start_time">
-                                            </div>
-                                            <div class="col-sm-6">
-                                                <input class="form-control" type="time" value="" id="example-time-input" name="tue_end_time">
-                                            </div>
-                                        </div>
-                                    </div>
-
-                                    <div class="form-group row">
-                                        <label for="example-time-input" class="col-sm-2 col-form-label">Monday</label>
-                                        <div class="row col-sm-10">
-                                            <div class="col-sm-6">
-                                                <input class="form-control" type="time" value="" id="example-time-input" name="wed_start_time">
-                                            </div>
-                                            <div class="col-sm-6">
-                                                <input class="form-control" type="time" value="" id="example-time-input" name="wed_end_time">
-                                            </div>
-                                        </div>
-                                    </div>
-
-                                    <div class="form-group row">
-                                        <label for="example-time-input" class="col-sm-2 col-form-label">Monday</label>
-                                        <div class="row col-sm-10">
-                                            <div class="col-sm-6">
-                                                <input class="form-control" type="time" value="" id="example-time-input" name="thu_start_time">
-                                            </div>
-                                            <div class="col-sm-6">
-                                                <input class="form-control" type="time" value="" id="example-time-input" name="thu_end_time">
-                                            </div>
-                                        </div>
-                                    </div>
-
-                                    <div class="form-group row">
-                                        <label for="example-time-input" class="col-sm-2 col-form-label">Monday</label>
-                                        <div class="row col-sm-10">
-                                            <div class="col-sm-6">
-                                                <input class="form-control" type="time" value="" id="example-time-input" name="fri_start_time">
-                                            </div>
-                                            <div class="col-sm-6">
-                                                <input class="form-control" type="time" value="" id="example-time-input" name="fri_end_time">
-                                            </div>
-                                        </div>
-                                    </div>
-
-                                    <div class="form-group row">
-                                        <label for="example-time-input" class="col-sm-2 col-form-label">Monday</label>
-                                        <div class="row col-sm-10">
-                                            <div class="col-sm-6">
-                                                <input class="form-control" type="time" value="" id="example-time-input" name="sat_start_time">
-                                            </div>
-                                            <div class="col-sm-6">
-                                                <input class="form-control" type="time" value="" id="example-time-input" name="sat_end_time">
-                                            </div>
-                                        </div>
-                                    </div>
-
-                                    <div class="form-group row">
-                                        <label for="example-time-input" class="col-sm-2 col-form-label">Monday</label>
-                                        <div class="row col-sm-10">
-                                            <div class="col-sm-6">
-                                                <input class="form-control" type="time" value="" id="example-time-input" name="sun_start_time">
-                                            </div>
-                                            <div class="col-sm-6">
-                                                <input class="form-control" type="time" value="" id="example-time-input" name="sun_end_time">
-                                            </div>
-                                        </div>
-                                    </div> --}}
 
                                     <div class="text-xs-right pull-right">
                                         <button type="submit" class="btn btn-info">Save</button>

@@ -36,6 +36,7 @@
                                         <th>Email</th>
                                         <th>Company</th>
                                         <th>Role</th>
+                                        <th>Action</th>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -45,6 +46,9 @@
                                             <td>{{ $user->email }}</td>
                                             <td>{{ $user->company->name ?? '' }}</td>
                                             <td>{{ config('constants.USER_ROLES_NAME')[$user->role]}}</td>
+                                            <td>
+                                                <a class="btn btn-primary" href="{{ route('users.edit', $user->id) }}">Edit</a>
+                                            </td>
                                         </tr>
                                     @endforeach
                                 </tbody>

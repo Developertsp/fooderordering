@@ -13,6 +13,7 @@ class RestaurantSchedule extends Model
         'day',
         'opening_time',
         'closing_time',
+        'is_closed',
         'created_by',
         'company_id'
     ];
