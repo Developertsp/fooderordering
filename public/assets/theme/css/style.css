@@ -26144,7 +26144,7 @@ Height property
   transition: all 0.3s ease-in-out;
   overflow: hidden;
   border-radius: 0;
-  margin-right: 0px; }
+  margin-right: 361px; }
 
 @media (max-width: 767px) {
   .content-wrapper {
@@ -26328,7 +26328,7 @@ Height property
   max-height: 135px;
   z-index: 999;
   position: relative;
-  margin-right: 0px;
+  margin-right: 361px;
   -moz-transition: margin-left 0.3s ease-in-out;
   -o-transition: margin-left 0.3s ease-in-out;
   -webkit-transition: margin-left 0.3s ease-in-out;
