@@ -39,9 +39,8 @@ Route::group(['middleware' => ['auth']], function(){
     Route::get('products', [ProductController::class, 'index'])->name('products.list');
     Route::get('products/create', [ProductController::class, 'create'])->name('products.create');
     Route::post('products/store', [ProductController::class, 'store'])->name('products.store');
-    // Route::get('companies/edit/{id}', [CompanyController::class, 'edit'])->name('companies.edit');
-    // Route::post('companies/update', [CompanyController::class, 'update'])->name('companies.update');
-    // Route::delete('companies/destroy/{id}', [CompanyController::class, 'destroy'])->name('companies.destroy');
+    Route::get('products/edit/{id}', [ProductController::class, 'edit'])->name('products.edit');
+    Route::post('products/update/', [ProductController::class, 'update'])->name('products.update');
 });
 
     //Category Routes

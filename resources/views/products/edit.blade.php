@@ -7,13 +7,13 @@
     <div class="content-header">
         <div class="d-flex align-items-center">
             <div class="me-auto">
-                <h4 class="page-title">Add Product</h4>
+                <h4 class="page-title">Edit Product</h4>
                 <div class="d-inline-block align-items-center">
                     <nav>
                         <ol class="breadcrumb">
                             <li class="breadcrumb-item"><a href="#"><i class="mdi mdi-home-outline"></i></a></li>
                             <li class="breadcrumb-item" aria-current="page">Products</li>
-                            <li class="breadcrumb-item active" aria-current="page">Add Product</li>
+                            <li class="breadcrumb-item active" aria-current="page">Edit Product</li>
                         </ol>
                     </nav>
                 </div>
@@ -29,15 +29,16 @@
             <div class="box-body">
                 <div class="row">
                     <div class="col">
-                        <form action="{{ route('products.store') }}" method="post" id="product_form" class="form-horizontal needs-validation" role="form" novalidate>
+                        <form action="{{ route('products.update') }}" method="post" id="product_form" class="form-horizontal needs-validation" role="form" novalidate>
                             @csrf
+                            <input type="hidden" name="id" value="{{ $product->id }}">
                             <div class="row">
 
                                     <div class="col-md-6">
                                         <div class="form-group">
                                             <h5>Title <span class="text-danger">*</span></h5>
                                             <div class="controls">
-                                                <input type="text" name="title" class="form-control" required data-validation-required-message="This field is required"> 
+                                                <input type="text" name="title" value="{{ $product->title }}" class="form-control" required data-validation-required-message="This field is required"> 
                                             </div>
                                         </div>
                                     </div>
@@ -46,7 +47,7 @@
                                         <div class="form-group">
                                             <h5>Price <span class="text-danger">*</span></h5>
                                             <div class="controls">
-                                                <input type="text" name="price" class="form-control" required data-validation-required-message="This field is required"> 
+                                                <input type="text" name="price" value="{{ $product->price }}" class="form-control" required data-validation-required-message="This field is required"> 
                                             </div>
                                         </div>
                                     </div>
@@ -69,7 +70,7 @@
                                         <div class="form-group">
                                             <h5>Description <span class="text-danger">*</span></h5>
                                             <div class="controls">
-                                                <textarea rows="5" name="description" class="form-control" placeholder="Product Description"></textarea>
+                                                <textarea rows="5" name="description" class="form-control" placeholder="Product Description">{{$product->description}}</textarea>
                                             </div>
                                         </div>
                                     </div>
