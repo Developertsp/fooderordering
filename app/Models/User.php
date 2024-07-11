@@ -25,6 +25,16 @@ class User extends Authenticatable
         'created_by',
     ];
 
+        public function createdByUser()
+        {
+            return $this->belongsTo(User::class, 'created_by');
+        }
+    
+        public function updatedByUser()
+        {
+            return $this->belongsTo(User::class, 'updated_by');
+        }
+
     public function company()
     {
         return $this->belongsTo(Company::class);

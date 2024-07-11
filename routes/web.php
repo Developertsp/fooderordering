@@ -38,7 +38,7 @@ Route::group(['middleware' => ['auth']], function(){
     Route::get('schedules', [RestaurantScheduleController::class, 'index'])->name('schedules.list');
     Route::get('schedules/create', [RestaurantScheduleController::class, 'create'])->name('schedules.create');
     Route::post('schedules/store', [RestaurantScheduleController::class, 'store'])->name('schedules.store');
-});
+
 
 
     //Category Routes
