@@ -44,7 +44,6 @@ Route::group(['middleware' => ['auth']], function(){
     // Route::delete('companies/destroy/{id}', [CompanyController::class, 'destroy'])->name('companies.destroy');
 });
 
-
     //Category Routes
     // Route::get('/show', [CategoryController::class, 'index'])->name('categories.index');
     Route::get('/addcategory', [CategoryController::class, 'index'])->name('category');
