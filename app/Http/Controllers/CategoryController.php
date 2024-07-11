@@ -56,13 +56,17 @@ class CategoryController extends Controller
        
         // Handle file uploads if present
         if ($request->hasFile('icon_file')) {
-            $path = $request->file('icon_file')->store('public/icon');
-            $category->icon_file = $path;
+            $path = $request->file('icon_file')->store('public/icons');
+
+            $storedpath = str_replace('public/','', $path);
+            $category->icon_file = $storedpath;
         }
 
         if ($request->hasFile('background_image')) {
             $path = $request->file('background_image')->store('public/backgrounds');
-            $category->background_image = $path;
+             
+            $storedpath  = str_replace('public/','', $path);
+            $category->background_image = $storedpath;
         }
 
         // Assign created_by and updated_by
