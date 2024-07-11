@@ -24,4 +24,15 @@ class User extends Authenticatable
         'password',
         'created_by',
     ];
+
+        // Relationships
+        public function createdByUser()
+        {
+            return $this->belongsTo(User::class, 'created_by');
+        }
+    
+        public function updatedByUser()
+        {
+            return $this->belongsTo(User::class, 'updated_by');
+        }
 }
