@@ -14,14 +14,6 @@ Auth::routes();
 Route::group(['middleware' => ['auth']], function(){
     Route::get('/', [DashboardController::class, 'index'])->name('dashboad');
 
-    Route::get('category', function () {
-        return view('category');
-    })->name('category');
-
-    Route::get('addcategory', function () {
-        return view('addcategory');
-    })->name('addcategory');
-
     // Users Routes
     Route::get('users', [UserController::class, 'index'])->name('users.list');
     Route::get('users/create', [UserController::class, 'create'])->name('users.create');
@@ -52,9 +44,13 @@ Route::group(['middleware' => ['auth']], function(){
     // Route::delete('companies/destroy/{id}', [CompanyController::class, 'destroy'])->name('companies.destroy');
 });
 
-Route::group(['prefix' => 'categories'], function () {
-    Route::get('/', [CategoryController::class, 'index'])->name('categories.index');
-    Route::post('/store', [CategoryController::class, 'store'])->name('categories.store');
-    Route::get('/addcategory', [CategoryController::class, 'add']);
-});
+
+    //Category Routes
+    // Route::get('/show', [CategoryController::class, 'index'])->name('categories.index');
+    Route::get('/addcategory', [CategoryController::class, 'index'])->name('category');
+    Route::get('/category', [CategoryController::class, 'show'])->name('addcategory');
+    Route::post('category/store', [CategoryController::class, 'store'])->name('category.store');
+
+
+   
 
