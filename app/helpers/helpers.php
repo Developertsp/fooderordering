@@ -1,5 +1,11 @@
 <?php
 
+function is_software_manager()
+{
+    $user_role = Auth()->user()->role;
+    return ($user_role  == config('constants.SOFTWARE_MANAGER')) ? true : false;
+}
+
 function view_permission($page_name = null)
 {
     $user_role = auth()->user()->role;
@@ -19,6 +25,7 @@ function view_permission($page_name = null)
             switch ($page_name) {
                 case 'dashboard':
                 case 'users':
+                case 'schedules':
                     return true;
                 default:
                     return false;
@@ -27,6 +34,7 @@ function view_permission($page_name = null)
         case 3: // Company Shop Admin
             switch ($page_name) {
                 case 'dashboard':
+                case 'schedules':
                     return true;
                 default:
                     return false;

@@ -25,7 +25,6 @@ class User extends Authenticatable
         'created_by',
     ];
 
-        // Relationships
         public function createdByUser()
         {
             return $this->belongsTo(User::class, 'created_by');
@@ -35,4 +34,9 @@ class User extends Authenticatable
         {
             return $this->belongsTo(User::class, 'updated_by');
         }
+
+    public function company()
+    {
+        return $this->belongsTo(Company::class);
+    }
 }
