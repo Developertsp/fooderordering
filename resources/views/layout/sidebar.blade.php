@@ -76,7 +76,7 @@
 				  </a>
 				  <ul class="treeview-menu">
 					<li><a href="{{ route('category') }}"><i class="icon-Commit"><span class="path1"></span><span class="path2"></span></i>Add New</a></li>
-					<li><a href="{{ route('addcategory') }}"><i class="icon-Commit"><span class="path1"></span><span class="path2"></span></i>List</a></li>
+					<li><a href="{{ route('category.list') }}"><i class="icon-Commit"><span class="path1"></span><span class="path2"></span></i>List</a></li>
 					{{-- <li><a href=" {{ route('sample') }}"><i class="icon-Commit"><span class="path1"></span><span class="path2"></span></i>Order Details</a></li> --}}
 				  </ul>
 				</li>

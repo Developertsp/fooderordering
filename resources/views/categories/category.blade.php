@@ -75,7 +75,7 @@
 										<span>
 											<label class="fw-700 fs-16 form-label">Parent Category</label>
 											<select class="form-select" name="parent_id" id="parent_id" data-placeholder="Choose a Parent Category">
-												<option value="">None</option>
+												 <option value="" disabled selected>Select Otions</option> 
 												@foreach($categories as $category)
 													@if($category->type == 1)
 														<option value="{{ $category->id }}">{{ $category->name }}</option>
@@ -84,8 +84,7 @@
 											</select>
 										</span>
 									</div>
-								</div>
-								
+								</div>	
 								<div class="col-md-6">
 									<div class="form-group">
 										<label class="fw-700 fs-16 form-label">Status</label>
