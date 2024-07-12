@@ -66,6 +66,22 @@
 					</li>
 				@endif
 
+				@if (view_permission('products'))
+					<li class="treeview">
+						<a href="#">
+						<i class="icon-User"></i>
+						<span>Products</span>
+						<span class="pull-right-container">
+							<i class="fa fa-angle-right pull-right"></i>
+						</span>
+						</a>
+						<ul class="treeview-menu">
+						<li><a href="{{ route('products.create') }}"><i class="icon-Commit"><span class="path1"></span><span class="path2"></span></i>Add New</a></li>
+						<li><a href="{{ route('products.list') }}"><i class="icon-Commit"><span class="path1"></span><span class="path2"></span></i>List</a></li>
+						</ul>
+					</li>
+				@endif
+
 				<li class="treeview">
 				  <a href="#">
 					<i class="icon-Clipboard-check"><span class="path1"></span><span class="path2"></span><span class="path3"></span></i>
