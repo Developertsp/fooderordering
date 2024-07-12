@@ -13,7 +13,16 @@ return new class extends Migration
     {
         Schema::create('products', function (Blueprint $table) {
             $table->id();
+            $table->text('title');
+            $table->text('description');
+            $table->decimal('price',8,2);
+            $table->unsignedBigInteger('category_id')->nullable();
+            $table->unsignedBigInteger('company_id');
+            $table->tinyInteger('is_enable')->default(1);
             $table->timestamps();
+            $table->unsignedBigInteger('created_by');
+            $table->unsignedBigInteger('updated_by')->nullable();
+            $table->softDeletes();
         });
     }
 

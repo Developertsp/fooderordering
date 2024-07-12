@@ -16,6 +16,7 @@ function view_permission($page_name = null)
                 case 'dashboard':
                 case 'users':
                 case 'company':
+                case 'products':
                     return true;
                 default:
                     return false;
@@ -26,6 +27,7 @@ function view_permission($page_name = null)
                 case 'dashboard':
                 case 'users':
                 case 'schedules':
+                case 'products':
                     return true;
                 default:
                     return false;
