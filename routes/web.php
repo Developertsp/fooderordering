@@ -40,8 +40,8 @@ Route::group(['middleware' => ['auth']], function(){
     Route::post('schedules/store', [RestaurantScheduleController::class, 'store'])->name('schedules.store');
 
     //Category Routes
-    Route::get('/category', [CategoryController::class, 'show'])->name('category.list');
-    Route::get('/category/create', [CategoryController::class, 'index'])->name('category');
+    Route::get('/category', [CategoryController::class, 'index'])->name('category.list');
+    Route::get('/category/create', [CategoryController::class, 'create'])->name('category.create');
     Route::post('category/store', [CategoryController::class, 'store'])->name('category.store');
 
 

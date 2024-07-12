@@ -44,6 +44,7 @@
             display: flex;
             flex-direction: column;
             align-items: flex-end;
+            margin-right:15px;
         }
         .status-dot {
             width: 12px;
@@ -85,25 +86,30 @@
         @foreach ($categories as $category)
             @if ($category->type == 1)
                 <div class="category-item">
-                    <div class="category-avatar">
-                        <img src="{{ asset('storage/' . $category->icon_file) }}" alt="Category Avatar">
-                    </div>
-                    <div class="category-details">
-                        <h4 class="category-name mt-20">{{ $category->name }}</h4>
-                        <div class="d-flex justify-content-between align-items-center">
-                            <p>{{ $category->description }}</p>
+                        <div class="category-avatar">
+                            <img src="{{ asset('storage/' . $category->icon_file) }}" alt="Category Avatar">
+                        </div>
+                        <div class="category-details">
+                            <h4 class="category-name mt-20">{{ $category->name }}</h4>
+                            <div class="d-flex justify-content-between align-items-center">
+                                <p>{{ $category->description }}</p>
+                            </div>
+                        </div>
+                        <div class="category-status">
+                            @if ($category->status == 1)
+                                <span class="status-dot status-active"></span>
+                            @elseif ($category->status == 2)
+                                <span class="status-dot status-inactive"></span>
+                            @elseif ($category->status == 3)
+                                <span class="status-dot status-draft"></span>
+                            @endif
+                        </div>
+                        <div class="category-actions ml-auto">
+                            <a href="#" class="waves-effect waves-circle btn btn-circle btn-danger-light btn-xs mb-5" title="Edit"><i class="fa fa-edit"></i></a>
+                            <a href="#" class="waves-effect waves-circle btn btn-circle btn-primary-light btn-xs mb-5" title="Delete"><i class="fa fa-trash"></i></a>
+                            <a href="#" class="waves-effect waves-circle btn btn-circle btn-info-light btn-xs mb-5" title="Duplicate"><i class="fa fa-plus-square-o"></i></a>
                         </div>
                     </div>
-                    <div class="category-status">
-                        @if ($category->status == 1)
-                            <span class="status-dot status-active"></span> Active
-                        @elseif ($category->status == 2)
-                            <span class="status-dot status-inactive"></span> Inactive
-                        @elseif ($category->status == 3)
-                            <span class="status-dot status-draft"></span> Draft
-                        @endif
-                    </div>
-                </div>
                 <div class="section mb-30">
                     <div class="row">
                         @foreach ($categories as $subcategory)
@@ -121,10 +127,10 @@
                                                 <p>{{ $subcategory->slug }}</p>
                                             </div>
                                             <div class="act-btn d-flex justify-content-between">
-                                                <div class="text-center mx-5">
+                                                {{-- <div class="text-center mx-5">
                                                     <a href="#" class="waves-effect waves-circle btn btn-circle btn-success-light btn-xs mb-5"><i class="fa fa-eye-slash"></i></a>
                                                     <small class="d-block">View</small>
-                                                </div>
+                                                </div> --}}
                                                 <div class="text-center mx-5">
                                                     <a href="#" class="waves-effect waves-circle btn btn-circle btn-danger-light btn-xs mb-5"><i class="fa fa-edit"></i></a>
                                                     <small class="d-block">Edit</small>

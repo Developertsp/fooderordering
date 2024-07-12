@@ -1,21 +1,5 @@
 <?php
 
-namespace App\Constants;
-
-class MyConstants
-{
-    public const CATEGORY_TYPES = [
-        'CATEGORY' => 1,
-        'SUB_CATEGORY' => 2,
-    ];
-
-    public const CATEGORY_STATUSES = [
-        'ACTIVE' => 1,
-        'INACTIVE' => 2,
-        'DRAFT' => 3,
-    ];
-} 
-
 return [
     'SOFTWARE_MANAGER' => 1,
     'SUPER_ADMIN' => 2,
@@ -25,5 +9,16 @@ return [
         1 => 'Software Manager',
         2 => 'Super Admin',
         3 => 'Shop Admin'
+    ],
+
+    'CATEGORY_STATUSES' => [
+        'ACTIVE' => 1,
+        'INACTIVE' => 2,
+        'DRAFT' => 3,
+    ],
+
+    'CATEGORY_TYPES' => [
+        'CATEGORY' => 1,
+        'SUB_CATEGORY' => 2,
     ],
 ];

@@ -4,7 +4,6 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
-use App\Constants\MyConstants; // Import your constants class
 
 class Category extends Model
 {
@@ -25,16 +24,9 @@ class Category extends Model
         {
             return $this->belongsTo(User::class, 'updated_by');
         }
-
-        
-    // Use constants directly from MyConstants class
-    public static function getCategoryTypes()
-    {
-        return MyConstants::CATEGORY_TYPES;
-    }
-
-    public static function getCategoryStatuses()
-    {
-        return MyConstants::CATEGORY_STATUSES;
-    }
+         
+        public function comapnyID()
+        {
+            return $this->belongsTo(User::class, 'company_id');
+        }
 }
