@@ -7,8 +7,62 @@
         .right-bar {
             display: none;
         }
+        .content-wrapper {
+            margin-right: 0;
+        } 
+        .main-header {
+            margin-right: 0;
+        }
+        .category-item {
+            display: flex;
+            align-items: center;
+            margin-bottom: 20px;
+            padding: 5px;
+            background-color: #f8f9fa;
+            border: 1px solid #dee2e6;
+            border-radius: 5px;
+        }
+        .category-avatar {
+            flex: 0 0 auto;
+            margin-right: 15px;
+        }
+        .category-avatar img {
+            width: 30px; 
+            height: 30px; 
+            border-radius: 50%; 
+            margin-left: 10px
+        }
+        .category-details {
+            flex: 1 1 auto;
+            margin-right: 15px;
+        }
+        .category-name {
+            margin-bottom: 5px;
+        }
+        .category-status {
+            flex: 0 0 auto;
+            display: flex;
+            flex-direction: column;
+            align-items: flex-end;
+        }
+        .status-dot {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            margin-right: 10px;
+        }
+        .status-active {
+            background-color: #28a745;
+        }
+        .status-inactive {
+            background-color: #dc3545;
+        }
+        .status-draft {
+            background-color: #ffee00;
+        }
     </style>
-    <!-- Content Header (Page header) -->	  
+
+    <!-- Content Header (Page header) -->
     <div class="content-header">
         <div class="d-flex align-items-center">
             <div class="me-auto">
@@ -28,42 +82,63 @@
 
     <!-- Main content -->
     <section class="content">
-        @foreach($categories as $category)
-            @if($category->type == 1)
+        @foreach ($categories as $category)
+            @if ($category->type == 1)
+                <div class="category-item">
+                    <div class="category-avatar">
+                        <img src="{{ asset('storage/' . $category->icon_file) }}" alt="Category Avatar">
+                    </div>
+                    <div class="category-details">
+                        <h4 class="category-name mt-20">{{ $category->name }}</h4>
+                        <div class="d-flex justify-content-between align-items-center">
+                            <p>{{ $category->description }}</p>
+                        </div>
+                    </div>
+                    <div class="category-status">
+                        @if ($category->status == 1)
+                            <span class="status-dot status-active"></span> Active
+                        @elseif ($category->status == 2)
+                            <span class="status-dot status-inactive"></span> Inactive
+                        @elseif ($category->status == 3)
+                            <span class="status-dot status-draft"></span> Draft
+                        @endif
+                    </div>
+                </div>
                 <div class="section mb-30">
-                    <h2 class="shadow-lg p-10 mb-30">{{ $category->name }}</h2>
                     <div class="row">
-                        @foreach($categories as $subcategory)
-                            @if($subcategory->type == 2 && $subcategory->parent_id == $category->id)
+                        @foreach ($categories as $subcategory)
+                            @if ($subcategory->type == 2 && $subcategory->parent_id == $category->id)
                                 <div class="col-xxxl-4 col-xl-3 col-lg-3 col-12">
                                     <div class="box overflow-h">
                                         <div class="box-body pt-10 pl-10">
-                                            <div>
-                                                <img src="{{ asset('storage/' . $subcategory->background_image) }}" alt="Image Description">
-
+                                            <div class="menu-item">
+                                                <img src="{{ asset('storage/' . $subcategory->background_image) }}" class="img-fluid w-p75" alt="Image Description">
                                             </div>
                                         </div>
-                                        <div class="box-body">
-                                            <div class="info-content">
-                                                <h4 class="mb-10 mt-0">{{ $subcategory->name }}</h4>
-                                                <div class="d-flex justify-content-between align-items-center">
-                                                    <h4 class="mb-0 text-primary">{{ $subcategory->slug }}</h4>
-                                                    <div class="d-flex align-items-center">    
-                                                        <span class="fs-18 mx-10 text-primary icon-{{ $subcategory->icon }}"><span class="path1"></span><span class="path2"></span><span class="path3"></span></span>
-                                                        <h5 class="text-black mb-0">
-                                                            @if($subcategory->status == 1)
-                                                                <span class="status-dot status-active"></span> Active
-                                                            @elseif($subcategory->status == 2)
-                                                                <span class="status-dot status-inactive"></span> Inactive
-                                                            @elseif($subcategory->status == 3)
-                                                                <span class="status-dot status-draft"></span> Draft
-                                                            @endif
-                                                        </h5>
-                                                    </div>
-                                                </div>
-                                                <p>{{ $subcategory->desc }}</p>
+                                        <div class="box-body text-center">
+                                            <div class="menu-details text-center">
+                                                <h4 class="mt-20 mb-10">{{ $subcategory->name }}</h4>
+                                                <p>{{ $subcategory->slug }}</p>
                                             </div>
-                                        </div>                          
+                                            <div class="act-btn d-flex justify-content-between">
+                                                <div class="text-center mx-5">
+                                                    <a href="#" class="waves-effect waves-circle btn btn-circle btn-success-light btn-xs mb-5"><i class="fa fa-eye-slash"></i></a>
+                                                    <small class="d-block">View</small>
+                                                </div>
+                                                <div class="text-center mx-5">
+                                                    <a href="#" class="waves-effect waves-circle btn btn-circle btn-danger-light btn-xs mb-5"><i class="fa fa-edit"></i></a>
+                                                    <small class="d-block">Edit</small>
+                                                </div>
+                                                <div class="text-center mx-5">
+                                                    <a href="#" class="waves-effect waves-circle btn btn-circle btn-primary-light btn-xs mb-5"><i class="fa fa-trash"></i></a>
+                                                    <small class="d-block">Delete</small>
+                                                </div>
+                                                <div class="text-center mx-5">
+                                                    <a href="#" class="waves-effect waves-circle btn btn-circle btn-info-light btn-xs mb-5"><i class="fa fa-plus-square-o"></i></a>
+                                                    <small class="d-block">Duplicate</small>
+                                                </div>
+                                            </div>
+                                        </div>
                                     </div>
                                 </div>
                             @endif
@@ -73,5 +148,6 @@
             @endif
         @endforeach
     </section>
+    
     <!-- /.content -->
 @endsection
