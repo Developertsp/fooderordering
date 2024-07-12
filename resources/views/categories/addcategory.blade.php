@@ -115,7 +115,7 @@
                         @foreach ($categories as $subcategory)
                             @if ($subcategory->type == 2 && $subcategory->parent_id == $category->id)
                                 <div class="col-xxxl-4 col-xl-3 col-lg-3 col-12">
-                                    <div class="box overflow-h">
+                                    <div class="box overflow-h shadow-lg">
                                         <div class="box-body pt-10 pl-10">
                                             <div class="menu-item">
                                                 <img src="{{ asset('storage/' . $subcategory->background_image) }}" class="img-fluid w-p75" alt="Image Description">
