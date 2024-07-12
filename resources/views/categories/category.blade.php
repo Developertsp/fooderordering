@@ -9,6 +9,12 @@
         .right-bar {
             display: none;
         }
+		.content-wrapper {
+			margin-right: 0;
+		} 
+		.main-header{
+			margin-right: 0;
+		}
     </style>
 
     <!-- Content Header (Page header) -->	  
