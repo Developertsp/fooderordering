@@ -66,6 +66,19 @@
                                         </div>
                                     </div>
 
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <h5>Select Sides</h5>
+                                            <div class="controls">
+                                                <select name="options[]" id="options" class="selectpicker" multiple>
+                                                    @foreach ($options as $option)
+                                                        <option value="{{ $option->id }}" {{ in_array($option->id, $product_options) ? 'selected' : ''}}>{{ $option->name }}</option>
+                                                    @endforeach
+                                                </select>
+                                            </div>
+                                        </div>
+                                    </div>
+
                                     <div class="col-md-12">
                                         <div class="form-group">
                                             <h5>Description <span class="text-danger">*</span></h5>

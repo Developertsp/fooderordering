@@ -28,6 +28,7 @@ function view_permission($page_name = null)
                 case 'users':
                 case 'schedules':
                 case 'products':
+                case 'options':
                     return true;
                 default:
                     return false;
