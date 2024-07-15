@@ -34,6 +34,7 @@
                                     <tr>
                                         <th>Title</th>
                                         <th>Price</th>
+                                        <th>Action</th>
                                     </tr>
                                 </thead>
                                 <tbody>

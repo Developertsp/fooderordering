@@ -23,20 +23,24 @@ class RestaurantScheduleController extends Controller
     {
         $days = ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday'];
 
-        $company_id = Auth::user()->company_id;
+        $companyId = Auth::user()->company_id;
 
         foreach ($days as $day) {
-            $opening_time = $request->input(strtolower($day) . '_opening_time');
-            $closing_time = $request->input(strtolower($day) . '_closing_time');
-            $is_closed = $request->has(strtolower($day) . '_is_closed');
+            $openingTime = $request->input(strtolower($day) . '_opening_time');
+            $closingTime = $request->input(strtolower($day) . '_closing_time');
+            $deliveryStartTime   = $request->input(strtolower($day) . '_delivery_start_time');
+            $collectionStartTime = $request->input(strtolower($day) . '_collection_start_time');
+            $isClosed = $request->has(strtolower($day) . '_is_closed');
 
             RestaurantSchedule::updateOrCreate(
-                ['day' => $day, 'company_id' => $company_id],
+                ['day' => $day, 'company_id' => $companyId],
                 [
-                    'company_id' => $company_id,
-                    'opening_time' => $opening_time,
-                    'closing_time' => $closing_time,
-                    'is_closed' => $is_closed,
+                    'company_id' => $companyId,
+                    'opening_time' => $openingTime,
+                    'closing_time' => $closingTime,
+                    'delivery_start_time' => $deliveryStartTime,
+                    'collection_start_time' => $collectionStartTime,
+                    'is_closed' => $isClosed,
                     'created_by' => Auth::user()->id,
                 ]
             );

@@ -6,6 +6,7 @@ use App\Models\Product;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use App\Models\Option;
+use App\Models\ProductImage;
 use App\Models\ProductOption;
 
 class ProductController extends Controller
@@ -28,6 +29,7 @@ class ProductController extends Controller
 
     public function store(Request $request)
     {
+        // return $request->file('images');
         $this->validate($request, [
             'title'         => 'required',
             'price'         => 'required',
@@ -44,12 +46,33 @@ class ProductController extends Controller
 
         $response = $product->save();
         if($response){
+            if ($request->hasFile('images')) {
+                $images = $request->file('images');
+                foreach($images as $image){
+                    $file_name  = time() . '_' . uniqid('', true) . '.' . $image->getClientOriginalExtension();
+                    $org_name   = $image->getClientOriginalName();
+        
+                    $image->storeAs('public/product_images/', $file_name);
+        
+                    $file_data = new ProductImage();
+        
+                    $file_data['product_id']    = $product->id;
+                    $file_data['file_name']     = $org_name;
+                    $file_data['path']          = $file_name;
+                    $file_data['created_by']    = Auth::id();
+        
+                    $file_data->save();
+                }
+            }
+
             $options = $request->options;
-            foreach($options as $option){
-                $productOption = new ProductOption();
-                $productOption->product_id = $product->id;
-                $productOption->option_id = $option;
-                $productOption->save();
+            if($options){
+                foreach($options as $option){
+                    $productOption = new ProductOption();
+                    $productOption->product_id = $product->id;
+                    $productOption->option_id = $option;
+                    $productOption->save();
+                }
             }
         }
         else{

@@ -29,10 +29,9 @@
             <div class="box-body">
                 <div class="row">
                     <div class="col">
-                        <form action="{{ route('products.store') }}" method="post" id="product_form" class="form-horizontal needs-validation" role="form" novalidate>
+                        <form action="{{ route('products.store') }}" method="post" id="product_form" class="form-horizontal needs-validation" role="form" novalidate enctype="multipart/form-data">
                             @csrf
                             <div class="row">
-
                                     <div class="col-md-6">
                                         <div class="form-group">
                                             <h5>Title <span class="text-danger">*</span></h5>
@@ -50,15 +49,6 @@
                                             </div>
                                         </div>
                                     </div>
-
-                                    {{-- <div class="col-md-4">
-                                        <h5 class="my-10">Multiple select boxes</h5>
-                                        <select class="selectpicker" multiple>
-                                            <option>Lorem</option>
-                                            <option>Ipsum</option>
-                                            <option>Dummy</option>
-                                        </select>
-                                    </div> --}}
 
                                     <div class="col-md-6">
                                         <div class="form-group">
@@ -97,10 +87,8 @@
                                     </div>
 
                                     <div class="form-group">
-                                        <label class="form-label">Select File</label>
-                                        <label class="file">
-                                          <input type="file" id="file">
-                                        </label>
+                                        <label for="images" class="form-label">Selecr Product Images</label>
+                                        <input class="form-control" name="images[]" type="file" id="images" multiple accept="image/*">
                                     </div>
                             
                                 <div class="text-xs-right">
