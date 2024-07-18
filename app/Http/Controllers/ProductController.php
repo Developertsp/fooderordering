@@ -8,6 +8,7 @@ use Illuminate\Support\Facades\Auth;
 use App\Models\Option;
 use App\Models\ProductImage;
 use App\Models\ProductOption;
+use App\Models\Category;
 
 class ProductController extends Controller
 {
@@ -21,7 +22,8 @@ class ProductController extends Controller
 
     public function create()
     {
-        // $data['categories'] = Category::
+        // category should be updated after add company id in category
+        $data['categories'] = Category::all();
         $companyId = Auth::user()->company_id; 
         $data['options'] = Option::where('company_id', $companyId)->where('is_enable', 1)->get();
         return view('products.create', $data);
@@ -85,10 +87,20 @@ class ProductController extends Controller
     public function edit($id)
     {
         $companyId = Auth::user()->company_id; 
+        // category should be update after add company id in category
+        $data['categories'] = Category::all();
         $data['product'] = Product::with('options.option.option_values')->find($id);
         $data['options'] = Option::where('company_id', $companyId)->where('is_enable', 1)->get();
         $data['product_options'] = $data['product']->options->pluck('option_id')->toArray();
         
         return view('products.edit', $data);
+    }
+
+    public function productsByCategory(Request $request)
+    {
+        $categoryId = $request->input('category_id');
+        $products = Product::where('category_id', $categoryId)->get();
+
+        return response()->json(['products' => $products]);
     }
 }

@@ -128,7 +128,7 @@
                 </div>
                 <!-- /.box-body -->
             </div>
-        <form action="{{ route('options.store') }}" method="post" id="options_form" class="form-horizontal needs-validation" role="form" novalidate>
+        </form>
         <!-- /.box -->
     </section>
     <!-- /.content -->

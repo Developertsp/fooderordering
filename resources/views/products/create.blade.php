@@ -56,9 +56,9 @@
                                             <div class="controls">
                                                 <select name="category_id" id="category_id" class="form-select">
                                                     <option value="">Select Category</option>
-                                                    {{-- @foreach ($companies as $company)
-                                                        <option value="{{ $company->id }}">{{ $company->name }}</option>
-                                                    @endforeach --}}
+                                                    @foreach ($categories as $category)
+                                                        <option value="{{ $category->id }}">{{ $category->name }}</option>
+                                                    @endforeach
                                                 </select>
                                             </div>
                                         </div>
