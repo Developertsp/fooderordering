@@ -1,5 +1,5 @@
 @extends('layout.app')
-@section('title', 'Products | FO - Food Ordering System')
+@section('title', 'Options/Sides | FO - Food Ordering System')
 
 @section('content')
 
@@ -7,13 +7,13 @@
     <div class="content-header">
         <div class="d-flex align-items-center">
             <div class="me-auto">
-                <h4 class="page-title">Products List</h4>
+                <h4 class="page-title">Options/Sides List</h4>
                 <div class="d-inline-block align-items-center">
                     <nav>
                         <ol class="breadcrumb">
                             <li class="breadcrumb-item"><a href="#"><i class="mdi mdi-home-outline"></i></a></li>
-                            <li class="breadcrumb-item" aria-current="page">Products</li>
-                            <li class="breadcrumb-item active" aria-current="page">Products List</li>
+                            <li class="breadcrumb-item" aria-current="page">Options/Sides</li>
+                            <li class="breadcrumb-item active" aria-current="page">Options/Sides List</li>
                         </ol>
                     </nav>
                 </div>
@@ -32,18 +32,20 @@
                             <table class="table border-no" id="example1">
                                 <thead>
                                     <tr>
-                                        <th>Title</th>
-                                        <th>Price</th>
+                                        <th>Name</th>
+                                        <th>Required</th>
+                                        <th>Type</th>
                                         <th>Action</th>
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    @foreach ($products as $product)
+                                    @foreach ($options as $option)
                                         <tr class="hover-primary">
-                                            <td>{{ $product->title }}</td>
-                                            <td>{{ $product->price }}</td>
+                                            <td>{{ $option->name }}</td>
+                                            <td>{{ config('constants.YES_NO')[$option->is_required] }}</td>
+                                            <td>{{ config('constants.PRODUCT_OPTIONS_TYPE')[$option->option_type] }}</td>
                                             <td>
-                                                <a class="btn btn-primary" href="{{ route('products.edit', $product->id) }}">Edit</a>
+                                                <a class="btn btn-primary" href="{{ route('options.edit', base64_encode($option->id)) }}">Edit</a>
                                             </td>
                                         </tr>
                                     @endforeach

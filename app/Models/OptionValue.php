@@ -6,21 +6,20 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
-class Product extends Model
+class OptionValue extends Model
 {
     use HasFactory, SoftDeletes;
 
     protected $fillable = [
-        'title',
+        'option_id',
+        'name',
         'price',
-        'description',
-        'is_enable',
         'created_by',
-        'updated_by'
+        'updated_by',
     ];
 
-    public function options()
+    public function option()
     {
-        return $this->hasMany(ProductOption::class);
+        return $this->belongsTo(Option::class);
     }
 }
