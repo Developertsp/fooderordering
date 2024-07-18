@@ -20,5 +20,15 @@ return [
     'CATEGORY_TYPES' => [
         'CATEGORY' => 1,
         'SUB_CATEGORY' => 2,
+      ],
+
+    'YES_NO' => [
+        1 => 'Yes',
+        2 => 'No',
+    ],
+
+    'PRODUCT_OPTIONS_TYPE' => [
+        1 => 'Radio',
+        2 => 'Checkbox',
     ],
 ];

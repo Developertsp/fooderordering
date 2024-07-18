@@ -8,6 +8,7 @@ use App\Http\Controllers\UserController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\RestaurantScheduleController;
 use App\Http\Controllers\ProductController;
+use App\Http\Controllers\OptionController;
 
 Auth::routes();
 
@@ -41,6 +42,13 @@ Route::group(['middleware' => ['auth']], function(){
     Route::post('products/store', [ProductController::class, 'store'])->name('products.store');
     Route::get('products/edit/{id}', [ProductController::class, 'edit'])->name('products.edit');
     Route::post('products/update/', [ProductController::class, 'update'])->name('products.update');
+    // Product Options/Sides Routes
+    Route::get('options', [OptionController::class, 'index'])->name('options.list');
+    Route::get('options/create', [OptionController::class, 'create'])->name('options.create');
+    Route::post('options/store', [OptionController::class, 'store'])->name('options.store');
+    Route::get('options/edit/{id}', [OptionController::class, 'edit'])->name('options.edit');
+    Route::post('options/update/', [OptionController::class, 'update'])->name('options.update');
+});
 
     //Category Routes
     Route::get('/category', [CategoryController::class, 'index'])->name('category.list');

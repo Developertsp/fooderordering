@@ -37,11 +37,11 @@
 				@if (view_permission('users'))
 					<li class="treeview">
 						<a href="#">
-						<i class="icon-User"></i>
-						<span>Users</span>
-						<span class="pull-right-container">
-							<i class="fa fa-angle-right pull-right"></i>
-						</span>
+							<i class="icon-User"><span class="path1"></span><span class="path2"></span></i>
+							<span>Users</span>
+							<span class="pull-right-container">
+								<i class="fa fa-angle-right pull-right"></i>
+							</span>
 						</a>
 						<ul class="treeview-menu">
 						<li><a href="{{ route('users.create') }}"><i class="icon-Commit"><span class="path1"></span><span class="path2"></span></i>Add New</a></li>
@@ -62,6 +62,23 @@
 						<ul class="treeview-menu">
 						<li><a href="{{ route('schedules.create') }}"><i class="icon-Commit"><span class="path1"></span><span class="path2"></span></i>Add Schedule</a></li>
 						{{-- <li><a href="{{ route('users.list') }}"><i class="icon-Commit"><span class="path1"></span><span class="path2"></span></i>List</a></li> --}}
+						</ul>
+					</li>
+				@endif
+
+				{{-- Product Options / Sides --}}
+				@if (view_permission('options'))
+					<li class="treeview">
+						<a href="#">
+							<i class="icon-Chat-check"><span class="path1"></span><span class="path2"></span></i>
+							<span>Options/Sides</span>
+							<span class="pull-right-container">
+								<i class="fa fa-angle-right pull-right"></i>
+							</span>
+						</a>
+						<ul class="treeview-menu">
+						<li><a href="{{ route('options.create') }}"><i class="icon-Commit"><span class="path1"></span><span class="path2"></span></i>Add New</a></li>
+						<li><a href="{{ route('options.list') }}"><i class="icon-Commit"><span class="path1"></span><span class="path2"></span></i>List</a></li>
 						</ul>
 					</li>
 				@endif

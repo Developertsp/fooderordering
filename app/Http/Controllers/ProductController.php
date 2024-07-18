@@ -5,6 +5,9 @@ namespace App\Http\Controllers;
 use App\Models\Product;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use App\Models\Option;
+use App\Models\ProductImage;
+use App\Models\ProductOption;
 
 class ProductController extends Controller
 {
@@ -19,11 +22,14 @@ class ProductController extends Controller
     public function create()
     {
         // $data['categories'] = Category::
-        return view('products.create');
+        $companyId = Auth::user()->company_id; 
+        $data['options'] = Option::where('company_id', $companyId)->where('is_enable', 1)->get();
+        return view('products.create', $data);
     }
 
     public function store(Request $request)
     {
+        // return $request->file('images');
         $this->validate($request, [
             'title'         => 'required',
             'price'         => 'required',
@@ -39,14 +45,50 @@ class ProductController extends Controller
         $product->created_by    = Auth::id();
 
         $response = $product->save();
+        if($response){
+            if ($request->hasFile('images')) {
+                $images = $request->file('images');
+                foreach($images as $image){
+                    $file_name  = time() . '_' . uniqid('', true) . '.' . $image->getClientOriginalExtension();
+                    $org_name   = $image->getClientOriginalName();
+        
+                    $image->storeAs('public/product_images/', $file_name);
+        
+                    $file_data = new ProductImage();
+        
+                    $file_data['product_id']    = $product->id;
+                    $file_data['file_name']     = $org_name;
+                    $file_data['path']          = $file_name;
+                    $file_data['created_by']    = Auth::id();
+        
+                    $file_data->save();
+                }
+            }
+
+            $options = $request->options;
+            if($options){
+                foreach($options as $option){
+                    $productOption = new ProductOption();
+                    $productOption->product_id = $product->id;
+                    $productOption->option_id = $option;
+                    $productOption->save();
+                }
+            }
+        }
+        else{
+            return redirect()->route('products.create')->with('failed', 'Something went wrong');
+        }
 
         return redirect()->route('products.list')->with('success', 'Product created successfully');
     }
 
     public function edit($id)
     {
-        $data['product'] = Product::find($id);
-
+        $companyId = Auth::user()->company_id; 
+        $data['product'] = Product::with('options.option.option_values')->find($id);
+        $data['options'] = Option::where('company_id', $companyId)->where('is_enable', 1)->get();
+        $data['product_options'] = $data['product']->options->pluck('option_id')->toArray();
+        
         return view('products.edit', $data);
     }
 }
