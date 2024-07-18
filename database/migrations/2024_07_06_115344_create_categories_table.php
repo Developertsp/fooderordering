@@ -13,13 +13,14 @@ class CreateCategoriesTable extends Migration
             $table->id();
             $table->string('name');
             $table->text('desc');
-            $table->tinyInteger('type')->default(Category::getCategoryTypes()['CATEGORY']);
+            $table->string('type')->default('CATEGORY');
             $table->string('icon_file')->nullable();
             $table->string('background_image')->nullable();
             $table->string('slug')->unique();
-            $table->string('status')->default(Category::getCategoryStatuses()['DRAFT']);
+            $table->string('status')->default('DRAFT');
             $table->timestamps();
             $table->unsignedBigInteger('parent_id')->nullable();
+            $table->unsignedBigInteger('company_id')->nullable();
             $table->unsignedBigInteger('created_by')->nullable();
             $table->unsignedBigInteger('updated_by')->nullable();
             $table->softDeletes();

@@ -44,7 +44,7 @@
             <div class="box-body">
                 <div class="row">
                     <div class="col">
-                        <form method="PUT" action="{{ route('category.update', $category->id) }}" enctype="multipart/form-data">
+                        <form method="POST" action="{{ route('category.update', ['id' => $category->id]) }}" enctype="multipart/form-data">
                             @csrf
                             @method('PUT')
                             <div class="row">

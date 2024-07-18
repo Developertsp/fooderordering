@@ -48,14 +48,13 @@ Route::group(['middleware' => ['auth']], function(){
     Route::post('options/store', [OptionController::class, 'store'])->name('options.store');
     Route::get('options/edit/{id}', [OptionController::class, 'edit'])->name('options.edit');
     Route::post('options/update/', [OptionController::class, 'update'])->name('options.update');
-});
 
     //Category Routes
     Route::get('/category', [CategoryController::class, 'index'])->name('category.list');
     Route::get('/category/create', [CategoryController::class, 'create'])->name('category.create');
     Route::post('category/store', [CategoryController::class, 'store'])->name('category.store');
     Route::get('category/edit/{id}', [CategoryController::class, 'edit'])->name('category.edit');
-    Route::put('category/update', [CategoryController::class, 'update'])->name('category.update');
+    Route::put('category/update/{id}', [CategoryController::class, 'update'])->name('category.update');
     Route::delete('category/destroy/{id}', [CategoryController::class, 'destroy'])->name('category.destroy');
 });
 
