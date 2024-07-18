@@ -105,8 +105,12 @@
                             @endif
                         </div>
                         <div class="category-actions ml-auto">
-                            <a href="#" class="waves-effect waves-circle btn btn-circle btn-danger-light btn-xs mb-5" title="Edit"><i class="fa fa-edit"></i></a>
-                            <a href="#" class="waves-effect waves-circle btn btn-circle btn-primary-light btn-xs mb-5" title="Delete"><i class="fa fa-trash"></i></a>
+                            <a href="{{ route('category.edit', ['id' => $category->id]) }}" class="waves-effect waves-circle btn btn-circle btn-danger-light btn-xs mb-5" title="Edit"><i class="fa fa-edit"></i></a>
+                            <form action="{{ route('category.destroy', ['id' => $category->id]) }}" method="POST" style="display: inline;">
+                                @csrf
+                                @method('DELETE')
+                                <button type="submit" class="waves-effect waves-circle btn btn-circle btn-primary-light btn-xs mb-5" title="Delete"><i class="fa fa-trash"></i></button>
+                            </form>
                             <a href="#" class="waves-effect waves-circle btn btn-circle btn-info-light btn-xs mb-5" title="Duplicate"><i class="fa fa-plus-square-o"></i></a>
                         </div>
                     </div>
@@ -132,11 +136,15 @@
                                                     <small class="d-block">View</small>
                                                 </div> --}}
                                                 <div class="text-center mx-5">
-                                                    <a href="#" class="waves-effect waves-circle btn btn-circle btn-danger-light btn-xs mb-5"><i class="fa fa-edit"></i></a>
+                                                    <a href="{{ route('category.edit', ['id' => $category->id]) }}" class="waves-effect waves-circle btn btn-circle btn-danger-light btn-xs mb-5"><i class="fa fa-edit"></i></a>
                                                     <small class="d-block">Edit</small>
                                                 </div>
                                                 <div class="text-center mx-5">
-                                                    <a href="#" class="waves-effect waves-circle btn btn-circle btn-primary-light btn-xs mb-5"><i class="fa fa-trash"></i></a>
+                                                    <form action="{{ route('category.destroy', ['id' => $category->id]) }}" method="POST" style="display: inline;">
+                                                        @csrf
+                                                        @method('DELETE')
+                                                        <button type="submit" class="waves-effect waves-circle btn btn-circle btn-primary-light btn-xs mb-5" title="Delete"><i class="fa fa-trash"></i></button>
+                                                    </form>
                                                     <small class="d-block">Delete</small>
                                                 </div>
                                                 <div class="text-center mx-5">
