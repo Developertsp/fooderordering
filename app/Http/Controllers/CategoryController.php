@@ -4,37 +4,31 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Category;
-use App\Constants\MyConstants;
-use App\Models\User;
 use Illuminate\Support\Facades\Auth;
 
 class CategoryController extends Controller
 {
-    public function index()
+
+    public function __construct()
+    {
+        $this->constants = config('constants');
+    }
+
+    public function index(Category $category)
+    {
+        $categories = Category::all();
+        return view('categories.addcategory', compact('categories'));
+    }   
+
+
+    public function create()
     {
         $categories = Category::with('createdByUser')->get();
         return view('categories.category', compact('categories'));
     }
 
-    public function fetch()
-    {
-        // Fetch all categories from the database
-        $categories = Category::all();
-        
-        // Pass categories data to the view
-        return view('categories.category', compact('categories'));
-    }
-
-    public function show(Category $category)
-    {
-        $categories = Category::all();
-        
-        // Pass categories data to the view
-        return view('categories.addcategory', compact('categories'));
-    } 
     public function store(Request $request)
     {
-        // Validate request data 
         $validatedData = $request->validate([
             'name' => 'required|string|max:255',
             'slug' => 'required|string|max:255|unique:categories,slug',
@@ -45,49 +39,52 @@ class CategoryController extends Controller
             'background_image' => 'nullable|file|image|max:2048', 
             'parent_id' => 'nullable|exists:categories,id',
         ]);
-
-        // Create a new category 
+    
         $category = new Category();
-        $category->name = $validatedData['name'];
-        $category->desc = $validatedData['desc'];
-        $category->type = $validatedData['type']; 
-        $category->slug = $validatedData['slug'];
-        $category->status = $validatedData['status'];
-       
-        // Handle file uploads if present
+        $category->fill($validatedData);
+    
+        // Handle icon_file upload
         if ($request->hasFile('icon_file')) {
             $path = $request->file('icon_file')->store('public/icons');
-
-            $storedpath = str_replace('public/','', $path);
-            $category->icon_file = $storedpath;
+            $category->icon_file = str_replace('public/', '', $path);
         }
-
+    
+        // Handle background_image upload
         if ($request->hasFile('background_image')) {
             $path = $request->file('background_image')->store('public/backgrounds');
-             
-            $storedpath  = str_replace('public/','', $path);
-            $category->background_image = $storedpath;
+            $category->background_image = str_replace('public/', '', $path);
         }
-
-        // Assign created_by and updated_by
+    
         $category->created_by = Auth::id(); 
         $category->updated_by = Auth::id(); 
-
-        // Assign parent_id if available
+        $category->company_id = Auth::id(); 
+    
         if (isset($validatedData['parent_id'])) {
             $category->parent_id = $validatedData['parent_id'];
         }
-
+    
         try {
-            // Save the category instance
             $category->save();
-
-            // Redirect route
             return redirect()->route('category.list')->with('success', 'Category created successfully.');
         } catch (\Exception $e) {
-            // Handle any exceptions (e.g., database errors)
             return back()->withInput()->withErrors(['error' => $e->getMessage()]);
         }
+    }
+    
+
+    public function edit($id)
+    {
+
+    }
+
+    public function update(Request $request)
+    {
+
+    }
+
+    public function destroy($id)
+    {
+        
     }
     
 

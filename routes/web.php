@@ -42,7 +42,6 @@ Route::group(['middleware' => ['auth']], function(){
     Route::post('products/store', [ProductController::class, 'store'])->name('products.store');
     Route::get('products/edit/{id}', [ProductController::class, 'edit'])->name('products.edit');
     Route::post('products/update/', [ProductController::class, 'update'])->name('products.update');
-
     // Product Options/Sides Routes
     Route::get('options', [OptionController::class, 'index'])->name('options.list');
     Route::get('options/create', [OptionController::class, 'create'])->name('options.create');
@@ -52,9 +51,10 @@ Route::group(['middleware' => ['auth']], function(){
 });
 
     //Category Routes
-    Route::get('/category', [CategoryController::class, 'show'])->name('category.list');
-    Route::get('/category/create', [CategoryController::class, 'index'])->name('category');
+    Route::get('/category', [CategoryController::class, 'index'])->name('category.list');
+    Route::get('/category/create', [CategoryController::class, 'create'])->name('category.create');
     Route::post('category/store', [CategoryController::class, 'store'])->name('category.store');
+});
 
 
    

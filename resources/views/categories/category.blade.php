@@ -65,6 +65,7 @@
 									<div class="form-group">
 										<label class="fw-700 fs-16 form-label">Type</label>
 										<select class="form-select" id="type" name="type" data-placeholder="Choose a Category">
+											<option value="" disabled selected>Select Type</option> 
 											<option value="1">Category</option>
 											<option value="2">Sub Category</option>
 										</select>
@@ -75,7 +76,7 @@
 										<span>
 											<label class="fw-700 fs-16 form-label">Parent Category</label>
 											<select class="form-select" name="parent_id" id="parent_id" data-placeholder="Choose a Parent Category">
-												 <option value="" disabled selected>Select Otions</option> 
+												 <option value="" disabled selected>Select Options</option> 
 												@foreach($categories as $category)
 													@if($category->type == 1)
 														<option value="{{ $category->id }}">{{ $category->name }}</option>
@@ -178,7 +179,7 @@
 								typeSelect.addEventListener('change', function() {
 									if (this.value === '1') {
 										parentSelect.disabled = true;
-										parentSelect.value = ''; // Reset the value
+										parentSelect.value = ''; 
 									} else {
 										parentSelect.disabled = false;
 									}
