@@ -30,7 +30,6 @@ function view_permission($page_name = null)
                 case 'products':
                 case 'options':
                 case 'categories':
-
                     return true;
                 default:
                     return false;

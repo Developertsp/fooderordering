@@ -20,6 +20,7 @@ class CreateCategoriesTable extends Migration
             $table->string('status')->default('DRAFT');
             $table->timestamps();
             $table->unsignedBigInteger('parent_id')->nullable();
+            $table->unsignedBigInteger('company_id')->nullable();
             $table->unsignedBigInteger('created_by')->nullable();
             $table->unsignedBigInteger('updated_by')->nullable();
             $table->softDeletes();
