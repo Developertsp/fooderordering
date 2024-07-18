@@ -48,7 +48,6 @@ Route::group(['middleware' => ['auth']], function(){
     Route::post('options/store', [OptionController::class, 'store'])->name('options.store');
     Route::get('options/edit/{id}', [OptionController::class, 'edit'])->name('options.edit');
     Route::post('options/update/', [OptionController::class, 'update'])->name('options.update');
-});
 
     //Category Routes
     Route::get('/category', [CategoryController::class, 'index'])->name('category.list');
