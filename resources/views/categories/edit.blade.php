@@ -5,18 +5,6 @@
 
 @section('content')
 
-    <style>
-        .right-bar {
-            display: none;
-        }
-		.content-wrapper {
-			margin-right: 0;
-		} 
-		.main-header{
-			margin-right: 0;
-		}
-    </style>
-
     <!-- Content Header (Page header) -->	  
     <div class="content-header">
         <div class="d-flex align-items-center">
@@ -198,7 +186,7 @@
                                 event.preventDefault();
                                 
                                 var inputId = $(this).siblings('.btn-info').children('input').attr('id');
-                                $('#' + inputId).val(''); // Clear the file input
+                                $('#' + inputId).val(''); 
                                 $(this).siblings('.preview-image').attr('src', '{{ asset('images/product-placeholder.png') }}'); // Reset preview image
                             });
                
