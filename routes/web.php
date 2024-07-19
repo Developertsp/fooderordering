@@ -9,6 +9,7 @@ use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\RestaurantScheduleController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\OptionController;
+use App\Http\Controllers\MenuController;
 
 Auth::routes();
 
@@ -42,6 +43,7 @@ Route::group(['middleware' => ['auth']], function(){
     Route::post('products/store', [ProductController::class, 'store'])->name('products.store');
     Route::get('products/edit/{id}', [ProductController::class, 'edit'])->name('products.edit');
     Route::post('products/update/', [ProductController::class, 'update'])->name('products.update');
+    
     // Product Options/Sides Routes
     Route::get('options', [OptionController::class, 'index'])->name('options.list');
     Route::get('options/create', [OptionController::class, 'create'])->name('options.create');
@@ -56,6 +58,16 @@ Route::group(['middleware' => ['auth']], function(){
     Route::get('category/edit/{id}', [CategoryController::class, 'edit'])->name('category.edit');
     Route::put('category/update/{id}', [CategoryController::class, 'update'])->name('category.update');
     Route::delete('category/destroy/{id}', [CategoryController::class, 'destroy'])->name('category.destroy');
+
+    // Menus Routes
+    Route::get('menu', [MenuController::class, 'index'])->name('menu.list');
+    Route::get('menu/create', [MenuController::class, 'create'])->name('menu.create');
+    Route::post('menu/store', [MenuController::class, 'store'])->name('menu.store');
+    Route::get('menu/edit/{id}', [MenuController::class, 'edit'])->name('menu.edit');
+    Route::post('menu/update/', [MenuController::class, 'update'])->name('menu.update');
+
+    Route::get('/productsByCategory', [ProductController::class, 'productsByCategory'])->name('products.by.category');
+
 });
 
 
