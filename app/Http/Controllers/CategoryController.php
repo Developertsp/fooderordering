@@ -57,7 +57,7 @@ class CategoryController extends Controller
     
         $category->created_by = Auth::id(); 
         $category->updated_by = Auth::id(); 
-        $category->company_id = Auth::id(); 
+        $category->company_id = Auth::user()->company_id; 
     
         if (isset($validatedData['parent_id'])) {
             $category->parent_id = $validatedData['parent_id'];

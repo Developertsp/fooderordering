@@ -4,15 +4,6 @@
 @section('content')
 
     <style>
-        .right-bar {
-            display: none;
-        }
-        .content-wrapper {
-            margin-right: 0;
-        } 
-        .main-header {
-            margin-right: 0;
-        }
         .category-item {
             display: flex;
             align-items: center;
@@ -61,6 +52,25 @@
         .status-draft {
             background-color: #ffee00;
         }
+        .box {
+        width: 100%; 
+        height: 348px; 
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center; 
+        }
+        .menu-item {
+            text-align: center; 
+            margin-top: 15px;
+        }
+        .img-fluid {
+            max-width: 100%;
+            height: auto;
+        }
+        .w-p75 {
+            width: 75%; 
+        }
     </style>
 
     <!-- Content Header (Page header) -->
@@ -80,7 +90,6 @@
             </div>
         </div>
     </div>
-
     <!-- Main content -->
     <section class="content">
         @foreach ($categories as $category)
@@ -97,11 +106,11 @@
                         </div>
                         <div class="category-status">
                             @if ($category->status == 1)
-                                <span class="status-dot status-active"></span>
+                                <span class="status-dot status-active" title="Status/Active"></span>
                             @elseif ($category->status == 2)
-                                <span class="status-dot status-inactive"></span>
+                                <span class="status-dot status-inactive" title="Status/Unactive"></span>
                             @elseif ($category->status == 3)
-                                <span class="status-dot status-draft"></span>
+                                <span class="status-dot status-draft" title="Status/Draft"></span>
                             @endif
                         </div>
                         <div class="category-actions ml-auto">
@@ -162,6 +171,5 @@
             @endif
         @endforeach
     </section>
-    
     <!-- /.content -->
 @endsection
