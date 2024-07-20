@@ -63,7 +63,7 @@ Route::group(['middleware' => ['auth']], function(){
     Route::get('menu', [MenuController::class, 'index'])->name('menu.list');
     Route::get('menu/create', [MenuController::class, 'create'])->name('menu.create');
     Route::post('menu/store', [MenuController::class, 'store'])->name('menu.store');
-    Route::get('menu/edit/{id}', [MenuController::class, 'edit'])->name('menu.edit');
+    Route::get('menu/edit', [MenuController::class, 'edit'])->name('menu.edit');
     Route::post('menu/update/', [MenuController::class, 'update'])->name('menu.update');
 
     Route::get('/productsByCategory', [ProductController::class, 'productsByCategory'])->name('products.by.category');
