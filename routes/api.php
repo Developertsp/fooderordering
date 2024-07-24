@@ -8,6 +8,7 @@ use App\Http\Controllers\ApiController;
 //     return $request->user();
 // })->middleware('auth:sanctum');
 
-Route::get('/categories', [ApiController::class, 'categories']);
+Route::get('categories', [ApiController::class, 'categories']);
+Route::get('menu', [ApiController::class, 'menu']);
 
 

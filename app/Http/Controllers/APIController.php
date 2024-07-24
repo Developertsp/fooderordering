@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use Illuminate\Http\JsonResponse;
 use App\Models\Category;
 use App\Models\Company; 
+use App\Models\Menu;
 
 class ApiController extends Controller
 {
@@ -63,6 +64,15 @@ class ApiController extends Controller
         } catch (\Exception $e) {
             return response()->json(['status' => 'error', 'message' => 'Error retrieving categories', 'error' => $e->getMessage()], 500);
         }
+    }
+
+    public function menu(Request $request)
+    {
+        $company = validate_token($request->header('Authorization'));
+
+        $menu = Menu::with('category','product')->where('company_id', $company->id)->where('is_enable', 1)->get();
+        
+        return response()->json(['status' => 'success', 'message' => 'Menu Found', 'data' => $menu, 'company_token' => $company->token, ], 200);
     }
     
 }

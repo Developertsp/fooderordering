@@ -1,4 +1,5 @@
 <?php
+use App\Models\Company;
 
 function is_software_manager()
 {
@@ -56,4 +57,19 @@ function view_permission($page_name = null)
         default:
             return false;
     }
+}
+
+function validate_token($token)
+{
+    if (!$token) {
+        return response()->json(['error' => 'Authorization token not found'], 401);
+    }
+
+    $company = Company::where('token', $token)->where('is_enable', 1)->first();
+
+    if (!$company) {
+        return response()->json(['status' => 'error', 'message' => 'Unauthorized access'], 401);
+    }
+
+    return $company;
 }
