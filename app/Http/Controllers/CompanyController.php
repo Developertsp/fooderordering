@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Company;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Str;
 
 class CompanyController extends Controller
 {
@@ -27,10 +28,14 @@ class CompanyController extends Controller
             'address'   => 'required',
         ]);
 
+        // Generate a unique token
+        $token = Str::random(60);
+
         $company = new Company();
         $company->name = $request->name;
         $company->email = $request->email;
         $company->address = $request->address;
+        $company->token = $token;
         $company->created_by = Auth::user()->id;
 
         $response = $company->save();

@@ -17,6 +17,7 @@ return new class extends Migration
             $table->string('email');
             $table->text('address');
             $table->tinyInteger('is_enable')->default(1);
+            $table->string('token')->unique(); 
             $table->timestamps();
             $table->unsignedBigInteger('created_by');
             $table->unsignedBigInteger('updated_by')->nullable();
