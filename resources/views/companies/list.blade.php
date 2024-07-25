@@ -35,6 +35,7 @@
                                         <th>Name</th>
                                         <th>Email</th>
                                         <th>Address</th>
+                                        <th>Api Token</th>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -43,6 +44,7 @@
                                             <td>{{ $company->name }}</td>
                                             <td>{{ $company->email }}</td>
                                             <td>{{ $company->address }}</td>
+                                            <td>{{ $company->token }}</td>
                                         </tr>
                                     @endforeach
                                 </tbody>

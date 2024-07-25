@@ -7,6 +7,8 @@ use Illuminate\Http\JsonResponse;
 use App\Models\Category;
 use App\Models\Company; 
 use App\Models\Menu;
+use App\Models\Product;
+use App\Models\RestaurantSchedule;
 
 class ApiController extends Controller
 {
@@ -68,11 +70,50 @@ class ApiController extends Controller
 
     public function menu(Request $request)
     {
-        $company = validate_token($request->header('Authorization'));
+        $response = validate_token($request->header('Authorization'));
+        $responseData = $response->getData();
 
-        $menu = Menu::with('category','product')->where('company_id', $company->id)->where('is_enable', 1)->get();
-        
-        return response()->json(['status' => 'success', 'message' => 'Menu Found', 'data' => $menu, 'company_token' => $company->token, ], 200);
+        if($responseData->status == 'success'){
+            $companyId = $responseData->company->id;
+            $menu = Menu::with('category','product')->where('company_id', $companyId)->where('is_enable', 1)->get();
+
+            return response()->json(['status' => 'success', 'message' => 'Menu Found', 'data' => $menu], 200);
+        }
+        else{
+            return response()->json(['status' => $responseData->status, 'message' => $responseData->message], 401);
+        }
+    }
+
+    public function products(Request $request)
+    {
+        $response = validate_token($request->header('Authorization'));
+        $responseData = $response->getData();
+
+        if($responseData->status == 'success'){
+            $companyId = $responseData->company->id;
+            $products = Product::with('category')->where('company_id', $companyId)->where('is_enable', 1)->get();
+
+            return response()->json(['status' => 'success', 'message' => 'Products Found', 'data' => $products], 200);
+        }
+        else{
+            return response()->json(['status' => $responseData->status, 'message' => $responseData->message], 401);
+        }
+    }
+
+    public function schedule(Request $request)
+    {
+        $response = validate_token($request->header('Authorization'));
+        $responseData = $response->getData();
+
+        if($responseData->status == 'success'){
+            $companyId = $responseData->company->id;
+            $schedule = RestaurantSchedule::where('company_id', $companyId)->get();
+
+            return response()->json(['status' => 'success', 'message' => 'Schedule Found', 'data' => $schedule], 200);
+        }
+        else{
+            return response()->json(['status' => $responseData->status, 'message' => $responseData->message], 401);
+        }
     }
     
 }

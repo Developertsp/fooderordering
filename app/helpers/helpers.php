@@ -61,15 +61,16 @@ function view_permission($page_name = null)
 
 function validate_token($token)
 {
-    if (!$token) {
-        return response()->json(['error' => 'Authorization token not found'], 401);
-    }
+    // if (!$token) {
+    //     return response()->json(['error' => 'Authorization token not found'], 401);
+    // }
 
     $company = Company::where('token', $token)->where('is_enable', 1)->first();
 
-    if (!$company) {
+    if ($company) {
+        return response()->json(['status' => 'success', 'message' => 'success', 'company' => $company], 200);
+    }
+    else{
         return response()->json(['status' => 'error', 'message' => 'Unauthorized access'], 401);
     }
-
-    return $company;
 }
