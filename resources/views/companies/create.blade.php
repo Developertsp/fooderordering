@@ -1,7 +1,5 @@
 @extends('layout.app')
 @section('title', 'Companies | FO - Food Ordering System')
-{{-- @section('pageTitle', 'Dashboard')
-@section('breadcrumTitle', 'User Dashboard') --}}
 
 @section('content')
 

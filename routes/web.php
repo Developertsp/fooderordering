@@ -28,9 +28,9 @@ Route::group(['middleware' => ['auth']], function(){
     Route::get('companies', [CompanyController::class, 'index'])->name('companies.list');
     Route::get('companies/create', [CompanyController::class, 'create'])->name('companies.create');
     Route::post('companies/store', [CompanyController::class, 'store'])->name('companies.store');
-    // Route::get('companies/edit/{id}', [CompanyController::class, 'edit'])->name('companies.edit');
-    // Route::post('companies/update', [CompanyController::class, 'update'])->name('companies.update');
-    // Route::delete('companies/destroy/{id}', [CompanyController::class, 'destroy'])->name('companies.destroy');
+    Route::get('companies/edit/{id}', [CompanyController::class, 'edit'])->name('companies.edit');
+    Route::post('companies/update', [CompanyController::class, 'update'])->name('companies.update');
+    // Route::delete('companies/destroy/{id}'0, [CompanyController::class, 'destroy'])->name('companies.destroy');
 
     // Restaurant Schedule
     Route::get('schedules', [RestaurantScheduleController::class, 'index'])->name('schedules.list');
