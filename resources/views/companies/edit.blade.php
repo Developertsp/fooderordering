@@ -52,6 +52,25 @@
                                             <input type="text" name="address" value="{{ $company->address }}" class="form-control" required data-validation-required-message="This field is required"> 
                                         </div>
                                     </div>
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <label class="fw-700 fs-16 form-label">Status</label>
+                                            <div class="radio-list">
+                                                <label class="radio-inline p-0 me-10">
+                                                    <div class="radio radio-info">
+                                                        <input type="radio" name="status" id="radio1" value="1" {{ old('status', $company->status) == 1 ? 'checked' : '' }}>
+                                                        <label for="radio1">Active</label>
+                                                    </div>
+                                                </label>
+                                                <label class="radio-inline">
+                                                    <div class="radio radio-info">
+                                                        <input type="radio" name="status" id="radio2" value="2" {{ old('status', $company->status) == 2 ? 'checked' : '' }}>
+                                                        <label for="radio2">Inactive</label>
+                                                    </div>
+                                                </label>
+                                            </div>
+                                        </div>
+                                    </div>
                                 </div>
                             
                                 <div class="text-xs-right">
