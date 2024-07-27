@@ -91,6 +91,7 @@ class ApiController extends Controller
 
     public function products(Request $request)
     {
+        // fetch all products of a company
         $response = validate_token($request->header('Authorization'));
         $responseData = $response->getData();
 
@@ -99,6 +100,30 @@ class ApiController extends Controller
             $products = Product::with('category')->where('company_id', $companyId)->where('is_enable', 1)->get();
 
             return response()->json(['status' => 'success', 'message' => 'Products Found', 'data' => $products], 200);
+        }
+        else{
+            return response()->json(['status' => $responseData->status, 'message' => $responseData->message], 401);
+        }
+    }
+
+    public function category_products(Request $request, $category = null)
+    {
+        // Fetch prdocuts of a specific category
+        $response = validate_token($request->header('Authorization'));
+        $responseData = $response->getData();
+
+        if($responseData->status == 'success'){
+            if($category){
+                $categoryDetail = Category::where('slug', $category)->where('status', 1)->first();
+                $companyId = $responseData->company->id;
+
+                $products = Product::with('category')->where('company_id', $companyId)->where('category_id', $categoryDetail->id)->where('is_enable', 1)->get();
+
+                return response()->json(['status' => 'success', 'message' => 'Products Found', 'data' => $products], 200);
+            }
+            else{
+                return response()->json(['status' => 'error', 'message' => 'Kindly provide category', 'data' => ''], 404);
+            }
         }
         else{
             return response()->json(['status' => $responseData->status, 'message' => $responseData->message], 401);
@@ -115,6 +140,23 @@ class ApiController extends Controller
             $schedule = RestaurantSchedule::where('company_id', $companyId)->get();
 
             return response()->json(['status' => 'success', 'message' => 'Schedule Found', 'data' => $schedule], 200);
+        }
+        else{
+            return response()->json(['status' => $responseData->status, 'message' => $responseData->message], 401);
+        }
+    }
+
+    public function categories_a(Request $request)
+    {
+        $response = validate_token($request->header('Authorization'));
+        
+        $responseData = $response->getData();
+
+        if($responseData->status == 'success'){
+            $companyId = $responseData->company->id;
+            $categories = Category::where('company_id', $companyId)->where('status', 1)->get();
+
+            return response()->json(['status' => 'success', 'message' => 'Categories List', 'data' => $categories], 200);
         }
         else{
             return response()->json(['status' => $responseData->status, 'message' => $responseData->message], 401);
