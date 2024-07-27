@@ -21,3 +21,5 @@
 <!-- Validations -->
 <script src="{{ asset('assets/theme/js/pages/validation.js')}}"></script>
 <script src="{{ asset('assets/theme/js/pages/form-validation.js')}}"></script>
+
+<script src="{{ asset('assets/theme/assets/vendor_components/select2/dist/js/select2.full.js')}}"></script>

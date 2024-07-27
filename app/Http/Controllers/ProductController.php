@@ -14,17 +14,16 @@ class ProductController extends Controller
 {
     public function index()
     {
-        $company_id = Auth::user()->company_id;
-        $data['products'] = Product::where('company_id', $company_id)->where('is_enable', 1)->get();
+        $companyId = Auth::user()->company_id;
+        $data['products'] = Product::where('company_id', $companyId)->where('is_enable', 1)->get();
         
         return view('products.list', $data);
     }
 
     public function create()
     {
-        // category should be updated after add company id in category
-        $data['categories'] = Category::all();
-        $companyId = Auth::user()->company_id; 
+        $companyId = Auth::user()->company_id;
+        $data['categories'] = Category::where('company_id', $companyId)->get();
         $data['options'] = Option::where('company_id', $companyId)->where('is_enable', 1)->get();
         return view('products.create', $data);
     }
@@ -86,9 +85,8 @@ class ProductController extends Controller
 
     public function edit($id)
     {
-        $companyId = Auth::user()->company_id; 
-        // category should be update after add company id in category
-        $data['categories'] = Category::all();
+        $companyId = Auth::user()->company_id;
+        $data['categories'] = Category::where('company_id', $companyId)->get();
         $data['product'] = Product::with('options.option.option_values')->find($id);
         $data['options'] = Option::where('company_id', $companyId)->where('is_enable', 1)->get();
         $data['product_options'] = $data['product']->options->pluck('option_id')->toArray();

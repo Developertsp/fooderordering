@@ -24,6 +24,19 @@
 
     <!-- Main content -->
     <section class="content">
+        @if (session()->has('success'))
+            <div class="alert alert-success alert-dismissible fade show" role="alert">
+                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                <strong>Success!</strong> {{ session()->get('success')}}
+            </div>
+        @elseif (session()->has('error'))
+            <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                <strong>Error!</strong> {{ session()->get('error')}}
+            </div>
+        @endif
+
+
         <div class="row">
             <div class="col-12">
                 <div class="box">
@@ -35,6 +48,8 @@
                                         <th>Name</th>
                                         <th>Email</th>
                                         <th>Address</th>
+                                        <th>Api Token</th>
+                                        <th>Actions</th>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -43,6 +58,10 @@
                                             <td>{{ $company->name }}</td>
                                             <td>{{ $company->email }}</td>
                                             <td>{{ $company->address }}</td>
+                                            <td>{{ $company->token }}</td>
+                                            <td>
+                                                <a class="btn btn-primary" href="{{ route('companies.edit', base64_encode($company->id)) }}">Edit</a>
+                                            </td>
                                         </tr>
                                     @endforeach
                                 </tbody>
