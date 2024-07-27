@@ -5,23 +5,17 @@
 		  <div class="multinav-scroll" style="height: 100%;">	
 			<!-- sidebar menu-->
 			<ul class="sidebar-menu" data-widget="tree">
-				<li class="treeview">
-				  <a href="#">
-					<i class="icon-Home"></i>
-					<span>Dashboard</span>
-					<span class="pull-right-container">
-					  <i class="fa fa-angle-right pull-right"></i>
-					</span>
-				  </a>
-				  <ul class="treeview-menu">
-					<li><a href="index.html"><i class="icon-Commit"><span class="path1"></span><span class="path2"></span></i>Dashboard 1</a></li>
-				  </ul>
+				<li class="">
+					<a href="{{ route('dashboad')}}">
+						<i class="icon-Home"></i>
+						<span>Dashboard</span>
+					</a>
 				</li>
 
 				@if(view_permission('company'))
 					<li class="treeview">
 						<a href="#">
-						  <i class="icon-User"></i>
+							<i class="icon-Clipboard-check"><span class="path1"></span><span class="path2"></span><span class="path3"></span></i>
 						  <span>Companies</span>
 						  <span class="pull-right-container">
 							<i class="fa fa-angle-right pull-right"></i>
@@ -33,19 +27,19 @@
 						</ul>
 					</li>
 				@endif
-
+				
 				@if (view_permission('users'))
 					<li class="treeview">
 						<a href="#">
-						<i class="icon-User"></i>
-						<span>Users</span>
-						<span class="pull-right-container">
-							<i class="fa fa-angle-right pull-right"></i>
-						</span>
+							<i class="icon-User"><span class="path1"></span><span class="path2"></span></i>
+							<span>Users</span>
+							<span class="pull-right-container">
+								<i class="fa fa-angle-right pull-right"></i>
+							</span>
 						</a>
 						<ul class="treeview-menu">
-						<li><a href="{{ route('users.create') }}"><i class="icon-Commit"><span class="path1"></span><span class="path2"></span></i>Add New</a></li>
-						<li><a href="{{ route('users.list') }}"><i class="icon-Commit"><span class="path1"></span><span class="path2"></span></i>List</a></li>
+							<li><a href="{{ route('users.create') }}"><i class="icon-Commit"><span class="path1"></span><span class="path2"></span></i>Add New</a></li>
+							<li><a href="{{ route('users.list') }}"><i class="icon-Commit"><span class="path1"></span><span class="path2"></span></i>List</a></li>
 						</ul>
 					</li>
 				@endif
@@ -53,15 +47,14 @@
 				@if (view_permission('schedules'))
 					<li class="treeview">
 						<a href="#">
-						<i class="icon-User"></i>
-						<span>Restaurant Schedule</span>
-						<span class="pull-right-container">
-							<i class="fa fa-angle-right pull-right"></i>
-						</span>
+							<i class="icon-Clipboard-check"><span class="path1"></span><span class="path2"></span><span class="path3"></span></i>
+							<span>Restaurant Schedule</span>
+							<span class="pull-right-container">
+								<i class="fa fa-angle-right pull-right"></i>
+							</span>
 						</a>
 						<ul class="treeview-menu">
 						<li><a href="{{ route('schedules.create') }}"><i class="icon-Commit"><span class="path1"></span><span class="path2"></span></i>Add Schedule</a></li>
-						{{-- <li><a href="{{ route('users.list') }}"><i class="icon-Commit"><span class="path1"></span><span class="path2"></span></i>List</a></li> --}}
 						</ul>
 					</li>
 				@endif
@@ -85,7 +78,7 @@
 				@if (view_permission('products'))
 					<li class="treeview">
 						<a href="#">
-						<i class="icon-User"></i>
+							<i class="icon-Clipboard-check"><span class="path1"></span><span class="path2"></span><span class="path3"></span></i>
 						<span>Products</span>
 						<span class="pull-right-container">
 							<i class="fa fa-angle-right pull-right"></i>
@@ -118,7 +111,7 @@
 				@if (view_permission('menu'))
 					<li class="treeview">
 						<a href="#">
-						<i class="icon-User"></i>
+							<i class="icon-Clipboard-check"><span class="path1"></span><span class="path2"></span><span class="path3"></span></i>
 						<span>Menu</span>
 						<span class="pull-right-container">
 							<i class="fa fa-angle-right pull-right"></i>
@@ -126,7 +119,7 @@
 						</a>
 						<ul class="treeview-menu">
 						<li><a href="{{ route('menu.create') }}"><i class="icon-Commit"><span class="path1"></span><span class="path2"></span></i>Add New</a></li>
-						<li><a href="{{ route('menu.list') }}"><i class="icon-Commit"><span class="path1"></span><span class="path2"></span></i>List</a></li>
+						<li><a href="{{ route('menu.edit') }}"><i class="icon-Commit"><span class="path1"></span><span class="path2"></span></i>Edit</a></li>
 						</ul>
 					</li>
 				@endif

@@ -25,7 +25,7 @@
     <!-- Main content -->
     <section class="content">
         <!-- Basic Forms -->
-        <form action="{{ route('menu.store') }}" method="post" id="menu_form" class="form-horizontal needs-validation" role="form" novalidate>
+        <form action="{{ route('menu.update') }}" method="post" id="menu_form" class="form-horizontal needs-validation" role="form" novalidate>
             @csrf
             <div class="box">
                 <div class="box-header with-border">
@@ -36,32 +36,39 @@
                     <div class="row">
                         <div class="col">
                             <div class="option_value_container">
-                                <div class="row option_value_div" >
-                                    <div class="col-md-6">
-                                        <div class="form-group">
-                                            <h5>Categories <span class="text-danger">*</span></h5>
-                                            <div class="controls">
-                                                <select name="category_id[]" id="category_id" class="form-select category-select" required>
-                                                    <option value="">Select Category</option>
-                                                    @foreach ($categories as $category)
-                                                        <option value="{{ $category->id }}">{{ $category->name }}</option>
-                                                    @endforeach
-                                                </select>
+                                @foreach ($menuItems as $key => $val)
+                                    <div class="row option_value_div" >
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <h5>Categories <span class="text-danger">*</span></h5>
+                                                <div class="controls">
+                                                    <select name="category_id[]" id="category_id" class="form-select category-select" required>
+                                                        <option value="">Select Category</option>
+                                                        @foreach ($categories as $category)
+                                                            <option value="{{ $category->id }}" {{ $category->id == $key ? 'selected' : '' }}>{{ $category->name }}</option>
+                                                        @endforeach
+                                                    </select>
 
-                                                
+                                                    
+                                                </div>
+                                            </div>
+                                        </div>
+        
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <h5>Products <span class="text-danger">*</span></h5>
+                                                <div class="controls product-select" >
+                                                    <select name="product_id[]" class="selectpicker" multiple>
+                                                        <option value="all">Select All</option>
+                                                        @foreach ($products[$key] as $product)
+                                                            <option value="{{ $product->id }}" {{ in_array($product->id, $productIds) ? 'selected' : '' }}>{{ $product->title }}</option>
+                                                        @endforeach
+                                                    </select>
+                                                </div>
                                             </div>
                                         </div>
                                     </div>
-    
-                                    <div class="col-md-6">
-                                        <div class="form-group">
-                                            <h5>Products <span class="text-danger">*</span></h5>
-                                            <div class="controls product-select" >
-                                                <select class="form-select"></select>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
+                                @endforeach
                             </div>
 
                             <div class="text-center">

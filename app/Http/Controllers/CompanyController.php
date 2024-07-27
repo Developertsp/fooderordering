@@ -45,12 +45,32 @@ class CompanyController extends Controller
 
     public function edit($id)
     {
+        $data['company'] = Company::find(base64_decode($id));
 
+        return view('companies.edit', $data);
     }
 
     public function update(Request $request)
     {
+        $this->validate($request, [
+            'name' => 'required',
+            'email' => 'required|email',
+            'address' => 'required'
+        ]);
+        
+        if($request->id){
+            $data['name'] = $request->name;
+            $data['email'] = $request->email;
+            $data['address'] = $request->address;
+            $data['updated_by'] = Auth::id();
 
+            $company = Company::find(base64_decode($request->id));
+            $response = $company->update($data);
+
+            return redirect()->route('companies.list')->with('success', 'Company details updated successfully!');
+        }
+
+        return redirect()->route('companies.list')->with('error', 'No company found!');
     }
 
     public function destroy($id)
