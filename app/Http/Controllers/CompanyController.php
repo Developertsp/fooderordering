@@ -60,6 +60,7 @@ class CompanyController extends Controller
             'name' => 'required',
             'email' => 'required|email',
             'address' => 'required',
+            'subscription_date' => 'required',
             'status' => 'required'
         ]);
         
@@ -67,6 +68,7 @@ class CompanyController extends Controller
             $data['name'] = $request->name;
             $data['email'] = $request->email;
             $data['address'] = $request->address;
+            $data['subscription_date'] = $request->subscription_date;
             $data['status'] = $request->status;
             $data['updated_by'] = Auth::id();
 
