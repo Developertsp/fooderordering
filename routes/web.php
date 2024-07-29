@@ -31,6 +31,7 @@ Route::group(['middleware' => ['auth']], function(){
     Route::get('companies/edit/{id}', [CompanyController::class, 'edit'])->name('companies.edit');
     Route::post('companies/update', [CompanyController::class, 'update'])->name('companies.update');
     // Route::delete('companies/destroy/{id}'0, [CompanyController::class, 'destroy'])->name('companies.destroy');
+    Route::post('companies/{id}/refresh-token', [CompanyController::class, 'refreshToken'])->name('companies.refreshToken');
 
     // Restaurant Schedule
     Route::get('schedules', [RestaurantScheduleController::class, 'index'])->name('schedules.list');

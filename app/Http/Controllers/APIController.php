@@ -65,7 +65,7 @@ class ApiController extends Controller
                 'Access-Control-Allow-Headers' => 'Content-Type, Authorization',
             ];
 
-            return response()->json(['status' => 'success', 'message' => 'Active categories for your company', 'data' => $categoryData, 'company_token' => $company->token,], 200, $headers);
+            return response()->json(['status' => 'success', 'message' => 'Active categories for your company', 'data' => $categoryData], 200, $headers);
 
         } catch (\Exception $e) {
             

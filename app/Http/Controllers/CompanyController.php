@@ -26,6 +26,8 @@ class CompanyController extends Controller
             'name'      => 'required',
             'email'     => 'required|email',
             'address'   => 'required',
+            'subscription_date' => 'required',
+            'status' => 'required|in:1,2',
         ]);
 
         // Generate a unique token
@@ -35,6 +37,8 @@ class CompanyController extends Controller
         $company->name = $request->name;
         $company->email = $request->email;
         $company->address = $request->address;
+        $company->subscription_date = $request->subscription_date;
+        $company->status = $request->status;
         $company->token = $token;
         $company->created_by = Auth::user()->id;
 
@@ -42,7 +46,7 @@ class CompanyController extends Controller
 
         return redirect()->route('companies.list')->with('success', 'Company created successfully');
     }
-
+    
     public function edit($id)
     {
         $data['company'] = Company::find(base64_decode($id));
@@ -55,13 +59,17 @@ class CompanyController extends Controller
         $this->validate($request, [
             'name' => 'required',
             'email' => 'required|email',
-            'address' => 'required'
+            'address' => 'required',
+            'subscription_date' => 'required',
+            'status' => 'required'
         ]);
         
         if($request->id){
             $data['name'] = $request->name;
             $data['email'] = $request->email;
             $data['address'] = $request->address;
+            $data['subscription_date'] = $request->subscription_date;
+            $data['status'] = $request->status;
             $data['updated_by'] = Auth::id();
 
             $company = Company::find(base64_decode($request->id));
@@ -77,4 +85,23 @@ class CompanyController extends Controller
     {
         
     }
+
+    public function refreshToken($id)
+ {
+    $companyId = base64_decode($id);
+    $company = Company::find($companyId);
+
+    if (!$company) {
+        return redirect()->route('companies.list')->with('error', 'Company not found!');
+    }
+
+    // Generate a new unique token
+    $newToken = Str::random(60);
+
+    $company->token = $newToken;
+    $company->save();
+
+    return response()->json(['success' => true, 'newToken' => $newToken]);
+ }
+
 }
