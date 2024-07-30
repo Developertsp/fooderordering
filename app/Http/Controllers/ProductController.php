@@ -94,6 +94,27 @@ class ProductController extends Controller
         return view('products.edit', $data);
     }
 
+    public function update(Request $request)
+    {
+        $this->validate($request, [
+            'title'         => 'required',
+            'price'         => 'required',
+            'category_id'   => 'required',
+            'description'   => 'required',
+        ]);
+
+        $post_data['title']         = $request->title;
+        $post_data['description']   = $request->description;
+        $post_data['price']         = $request->price;
+        $post_data['category_id']   = $request->category_id;
+        $post_data['updated_by']    = Auth::id();
+
+        $product = Product::find($request->id);
+        $response = $product->update($post_data);
+
+        return redirect()->route('products.list')->with('success', 'Product created successfully');
+    }
+
     public function productsByCategory(Request $request)
     {
         $categoryId = $request->input('category_id');

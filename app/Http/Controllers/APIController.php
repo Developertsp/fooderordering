@@ -117,7 +117,7 @@ class ApiController extends Controller
                 $categoryDetail = Category::where('slug', $category)->where('status', 1)->first();
                 $companyId = $responseData->company->id;
 
-                $products = Product::with('category')->where('company_id', $companyId)->where('category_id', $categoryDetail->id)->where('is_enable', 1)->get();
+                $products = Product::with('category', 'images', 'options.option.option_values')->where('company_id', $companyId)->where('category_id', $categoryDetail->id)->where('is_enable', 1)->get();
 
                 return response()->json(['status' => 'success', 'message' => 'Products Found', 'data' => $products], 200);
             }
