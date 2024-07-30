@@ -2,6 +2,15 @@
 @section('title', 'Companies | FO - Food Ordering System')
 
 @section('content')
+<style>
+    .content-wrapper {
+           margin-right: 0;
+       }
+   
+       .main-header {
+           margin-right: 0;
+       }
+</style>
 
     <!-- Content Header (Page header) -->	  
     <div class="content-header">
