@@ -71,6 +71,14 @@
         .w-p75 {
             width: 75%; 
         }
+      
+        .content-wrapper {
+        margin-right: 0;
+        }
+
+        .main-header {
+            margin-right: 0;
+        }
     </style>
 
     <!-- Content Header (Page header) -->

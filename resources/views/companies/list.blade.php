@@ -4,20 +4,7 @@
 @section('content')
 
 <style>
-    .company-status {
-        display: flex;
-        align-items: center;
-    }
-
-    .status-active {
-        background-color: green;
-    }
-
-    .status-inactive {
-        background-color: red;
-    }
-
-    .content-wrapper {
+ .content-wrapper {
         margin-right: 0;
     }
 

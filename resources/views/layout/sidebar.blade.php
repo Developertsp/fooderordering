@@ -1,4 +1,45 @@
 <aside class="main-sidebar">
+	<style>
+		.main-sidebar {
+    display: flex;
+    flex-direction: column;
+    height: 75vh; 
+}
+
+.sidebar {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+}
+
+.multinav {
+    flex-grow: 1; 
+}
+
+.sidebar-footer {
+    margin-top: auto; 
+    padding: 15px; 
+    background-color: #f8f9fa;
+    border-top: 1px solid #e9ecef; 
+}
+
+.treeview-menu {
+    display: none; 
+}
+
+.treeview.active .treeview-menu {
+    display: block; 
+}
+
+.sidebar-menu .active > a {
+    background-color: #f4f4f4; 
+}
+
+.treeview-menu {
+    transition: max-height 0.3s ease-out;
+}
+
+	</style>
     <!-- sidebar-->
     <section class="sidebar position-relative">	
 	  	<div class="multinav">
@@ -128,11 +169,34 @@
 						</a>
 					</div>
 				</div> --}}
-				<div class="copyright text-start m-25">
-					<p><strong class="d-block">Tech Solutons Pro</strong> © 2024</p>
+				 <!-- Copyright Section -->
+				 <div class="sidebar-footer">
+					<div class="copyright text-start">
+						<p><strong class="d-block">Tech Solutions Pro</strong> © 2024</p>
+					</div>
 				</div>
 			</div>
 		  </div>
 		</div>
+		<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+			<script>
+			$(document).ready(function() {
+				$('.treeview > a').on('click', function(e) {
+					e.preventDefault(); 
+					var $treeview = $(this).closest('.treeview');
+					$treeview.toggleClass('active');
+					$('.treeview').not($treeview).removeClass('active');
+				});
+				var currentUrl = window.location.href;
+				$('.sidebar-menu a').each(function() {
+					var $link = $(this);
+					if ($link.attr('href') === currentUrl) {
+						$link.closest('li').addClass('active'); 
+						$link.closest('.treeview').addClass('active'); 
+					}
+				});
+			});
+			</script>
+
     </section>
 </aside>
