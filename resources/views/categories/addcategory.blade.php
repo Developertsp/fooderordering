@@ -2,7 +2,6 @@
 @section('title', 'Categories | FO - Food Ordering System')
 
 @section('content')
-
     <style>
         .category-item {
             display: flex;
@@ -17,6 +16,14 @@
             flex: 0 0 auto;
             margin-right: 15px;
         }
+        .badge {
+        display: inline-block;
+        padding: 5px 10px;
+        border-radius: 12px;
+        font-size: 12px;
+        color: #fff;
+        text-align: center;
+       }
         .category-avatar img {
             width: 30px; 
             height: 30px; 
@@ -50,7 +57,7 @@
             background-color: #dc3545;
         }
         .status-draft {
-            background-color: #ffee00;
+            background-color: #fd7e14;
         }
         .box {
         width: 100%; 
@@ -114,11 +121,11 @@
                         </div>
                         <div class="category-status">
                             @if ($category->status == 1)
-                                <span class="status-dot status-active" title="Status/Active"></span>
+                                <span class="badge status-active" title="Status/Active">Active</span>
                             @elseif ($category->status == 2)
-                                <span class="status-dot status-inactive" title="Status/Unactive"></span>
+                                <span class="badge status-inactive" title="Status/Unactive">Inactive</span>
                             @elseif ($category->status == 3)
-                                <span class="status-dot status-draft" title="Status/Draft"></span>
+                               <span class="badge status-draft" title="Status/Draft">Draft</span>
                             @endif
                         </div>
                         <div class="category-actions ml-auto">
@@ -152,6 +159,15 @@
                                                     <a href="#" class="waves-effect waves-circle btn btn-circle btn-success-light btn-xs mb-5"><i class="fa fa-eye-slash"></i></a>
                                                     <small class="d-block">View</small>
                                                 </div> --}}
+                                                <div class="category-status">
+                                                    @if ($subcategory->status == 1)
+                                                        <span class="badge status-active" title="Status/Active">Active</span>
+                                                    @elseif ($subcategory->status == 2)
+                                                        <span class="badge status-inactive" title="Status/Inactive">Inactive</span>
+                                                    @elseif ($subcategory->status == 3)
+                                                        <span class="badge status-draft" title="Status/Draft">Draft</span>
+                                                    @endif
+                                                </div>
                                                 <div class="text-center mx-5">
                                                     <a href="{{ route('category.edit', ['id' => $subcategory->id]) }}" class="waves-effect waves-circle btn btn-circle btn-danger-light btn-xs mb-5"><i class="fa fa-edit"></i></a>
                                                     <small class="d-block">Edit</small>

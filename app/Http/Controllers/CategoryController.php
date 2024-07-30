@@ -42,6 +42,11 @@ class CategoryController extends Controller
     
         $category = new Category();
         $category->fill($validatedData);
+
+        $type = $request->input('type');
+        if ($type == 2 && !$request->input('parent_id')) {
+            return redirect()->back()->withErrors(['parent_id' => 'Please select a parent category.'])->withInput();
+        }
     
         // Handle icon_file upload
         if ($request->hasFile('icon_file')) {
