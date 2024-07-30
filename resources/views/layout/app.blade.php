@@ -24,8 +24,8 @@
             @include('layout.sidebar')
 
             <!-- Content Wrapper. Contains page content -->
-            <div class="content-wrapper">
-                <div class="container-full">
+            <div class="content-wrapper" >
+                <div class="container-full" >
                 <!-- Main content -->
                     @yield('content')
                 <!-- /.content -->
@@ -34,8 +34,7 @@
             <!-- /.content-wrapper -->
 
             <!-- Rightbar -->
-            @include('layout.rightbar')
-
+            @yield('rightbar')
             <!-- Footer -->
             @include('layout.footer')
 
