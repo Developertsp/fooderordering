@@ -31,22 +31,20 @@ class CompanyController extends Controller
         ]);
 
         // Generate a unique token
-        $token = Str::random(60);
-
-        $company = new Company();
-        $company->name = $request->name;
-        $company->email = $request->email;
-        $company->address = $request->address;
+        $token = 'tspkeyusmkeyanikey_apikeypunkeychar' . Str::random(60);
+        $company             = new Company();
+        $company->name       = $request->name;
+        $company->email      = $request->email;
+        $company->address    = $request->address;
         $company->subscription_date = $request->subscription_date;
-        $company->status = $request->status;
-        $company->token = $token;
+        $company->status     = $request->status;
+        $company->token      = $token;
         $company->created_by = Auth::user()->id;
-
         $response = $company->save();
 
         return redirect()->route('companies.list')->with('success', 'Company created successfully');
     }
-    
+
     public function edit($id)
     {
         $data['company'] = Company::find(base64_decode($id));
@@ -63,8 +61,8 @@ class CompanyController extends Controller
             'subscription_date' => 'required',
             'status' => 'required'
         ]);
-        
-        if($request->id){
+
+        if ($request->id) {
             $data['name'] = $request->name;
             $data['email'] = $request->email;
             $data['address'] = $request->address;
@@ -83,25 +81,22 @@ class CompanyController extends Controller
 
     public function destroy($id)
     {
-        
     }
 
     public function refreshToken($id)
- {
-    $companyId = base64_decode($id);
-    $company = Company::find($companyId);
+    {
+        $companyId = base64_decode($id);
+        $company = Company::find($companyId);
 
-    if (!$company) {
-        return redirect()->route('companies.list')->with('error', 'Company not found!');
+        if (!$company) {
+            return redirect()->route('companies.list')->with('error', 'Company not found!');
+        }
+
+        // Generate a new unique token
+        $newToken = Str::random(60);
+        $company->token = $newToken;
+        $company->save();
+
+        return response()->json(['success' => true, 'newToken' => $newToken]);
     }
-
-    // Generate a new unique token
-    $newToken = Str::random(60);
-
-    $company->token = $newToken;
-    $company->save();
-
-    return response()->json(['success' => true, 'newToken' => $newToken]);
- }
-
 }
