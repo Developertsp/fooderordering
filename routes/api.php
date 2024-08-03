@@ -10,9 +10,10 @@ use App\Http\Controllers\ApiController;
 
 Route::get('categories', [ApiController::class, 'categories']);
 Route::get('menu', [ApiController::class, 'menu']);
-Route::get('products', [ApiController::class, 'products']);
+Route::get('products/{id?}', [ApiController::class, 'products']);
 Route::get('schedule', [ApiController::class, 'schedule']);
 Route::get('categories_a', [ApiController::class, 'categories_a']);
 Route::get('category/products/{slug?}', [ApiController::class, 'category_products']);
+Route::get('options/detail', [ApiController::class, 'get_option_value_detail']);
 
 

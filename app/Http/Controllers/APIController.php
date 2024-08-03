@@ -7,6 +7,7 @@ use Illuminate\Http\JsonResponse;
 use App\Models\Category;
 use App\Models\Company; 
 use App\Models\Menu;
+use App\Models\OptionValue;
 use App\Models\Product;
 use App\Models\RestaurantSchedule;
 
@@ -89,15 +90,21 @@ class ApiController extends Controller
         }
     }
 
-    public function products(Request $request)
+    public function products(Request $request, $id = null)
     {
-        // fetch all products of a company
+        // fetch  single or all products of a company
         $response = validate_token($request->header('Authorization'));
         $responseData = $response->getData();
 
         if($responseData->status == 'success'){
             $companyId = $responseData->company->id;
-            $products = Product::with('category')->where('company_id', $companyId)->where('is_enable', 1)->get();
+            $products = Product::with('category')
+                ->where('company_id', $companyId)
+                ->where('is_enable', 1)
+                ->when($id, function($query, $id){
+                    return $query->where('id', $id);
+                })
+                ->get();
 
             return response()->json(['status' => 'success', 'message' => 'Products Found', 'data' => $products], 200);
         }
@@ -157,6 +164,23 @@ class ApiController extends Controller
             $categories = Category::where('company_id', $companyId)->where('status', 1)->get();
 
             return response()->json(['status' => 'success', 'message' => 'Categories List', 'data' => $categories], 200);
+        }
+        else{
+            return response()->json(['status' => $responseData->status, 'message' => $responseData->message], 401);
+        }
+    }
+
+    public function get_option_value_detail(Request $request)
+    {
+        $response = validate_token($request->header('Authorization'));
+        
+        $responseData = $response->getData();
+
+        if($responseData->status == 'success'){
+            $companyId = $responseData->company->id;
+            $options = OptionValue::whereIn('id', $request)->get();
+
+            return response()->json(['status' => 'success', 'message' => 'Options List', 'data' => $options], 200);
         }
         else{
             return response()->json(['status' => $responseData->status, 'message' => $responseData->message], 401);
