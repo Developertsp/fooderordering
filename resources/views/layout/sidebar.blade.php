@@ -112,7 +112,7 @@
 						</a>
 						<ul class="treeview-menu">
 						<li><a href="{{ route('menu.create') }}"><i class="icon-Commit"><span class="path1"></span><span class="path2"></span></i>Add New</a></li>
-						<li><a href="{{ route('menu.edit') }}"><i class="icon-Commit"><span class="path1"></span><span class="path2"></span></i>Edit</a></li>
+						<li><a href="{{ route('menu.edit') }}"><i class="icon-Commit"><span class="path1"></span><span class="path2"></span></i>List</a></li>
 						<li class="treeview">
 							<a href="#">
 								<i class="icon-Chat-check"><span class="path1"></span><span class="path2"></span></i>
