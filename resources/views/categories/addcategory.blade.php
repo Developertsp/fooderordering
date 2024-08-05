@@ -173,7 +173,7 @@
                                                     <small class="d-block">Edit</small>
                                                 </div>
                                                 <div class="text-center mx-5">
-                                                    <form action="{{ route('category.destroy', ['id' => $category->id]) }}" method="POST" style="display: inline;">
+                                                    <form action="{{ route('category.destroy', ['id' => $subcategory->id]) }}" method="POST" style="display: inline;">
                                                         @csrf
                                                         @method('DELETE')
                                                         <button type="submit" class="waves-effect waves-circle btn btn-circle btn-primary-light btn-xs mb-5" title="Delete"><i class="fa fa-trash"></i></button>
