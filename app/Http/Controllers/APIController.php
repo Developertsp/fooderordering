@@ -11,7 +11,7 @@ use App\Models\OptionValue;
 use App\Models\Product;
 use App\Models\RestaurantSchedule;
 
-class ApiController extends Controller
+class APIController extends Controller
 {
     public function categories(Request $request): JsonResponse
     {
