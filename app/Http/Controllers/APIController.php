@@ -2,13 +2,14 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
-use Illuminate\Http\JsonResponse;
+use App\Models\Menu;
+use App\Models\Order;
+use App\Models\Product;
 use App\Models\Category;
 use App\Models\Company; 
-use App\Models\Menu;
 use App\Models\OptionValue;
-use App\Models\Product;
+use Illuminate\Http\Request;
+use Illuminate\Http\JsonResponse;
 use App\Models\RestaurantSchedule;
 
 class APIController extends Controller
@@ -186,5 +187,22 @@ class APIController extends Controller
             return response()->json(['status' => $responseData->status, 'message' => $responseData->message], 401);
         }
     }
-    
+
+    public function order_process(Request $request)
+    {
+        return 'order received on backend but not save yet';
+        
+        $order = new Order();
+
+        $order->name            = $request->name;
+        $order->email           = $request->email;
+        $order->phone           = $request->phone;
+        $order->address         = $request->address;
+        $order->total           = $request->total;
+        $order->order_type      = $request->order_type;
+        $order->payment_option  = $request->payment_option;
+
+        $order->save();
+        
+    }
 }
