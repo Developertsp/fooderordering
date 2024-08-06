@@ -1,15 +1,16 @@
 <?php
 
-use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Auth;
-use App\Http\Controllers\CompanyController;
-use App\Http\Controllers\DashboardController;
-use App\Http\Controllers\UserController;
-use App\Http\Controllers\CategoryController;
-use App\Http\Controllers\RestaurantScheduleController;
-use App\Http\Controllers\ProductController;
-use App\Http\Controllers\OptionController;
+use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\MenuController;
+use App\Http\Controllers\UserController;
+use App\Http\Controllers\OrderController;
+use App\Http\Controllers\OptionController;
+use App\Http\Controllers\CompanyController;
+use App\Http\Controllers\ProductController;
+use App\Http\Controllers\CategoryController;
+use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\RestaurantScheduleController;
 
 Auth::routes();
 
@@ -66,6 +67,9 @@ Route::group(['middleware' => ['auth']], function(){
     Route::post('menu/store', [MenuController::class, 'store'])->name('menu.store');
     Route::get('menu/edit', [MenuController::class, 'edit'])->name('menu.edit');
     Route::post('menu/update/', [MenuController::class, 'update'])->name('menu.update');
+
+    // Orders Routes
+    Route::get('orders/list', [OrderController::class, 'index'])->name('orders.list');
 
     Route::get('/productsByCategory', [ProductController::class, 'productsByCategory'])->name('products.by.category');
 

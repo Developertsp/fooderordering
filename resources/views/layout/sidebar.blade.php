@@ -53,6 +53,22 @@
 					</a>
 				</li>
 
+				@if(view_permission('orders'))
+					<li class="treeview">
+						<a href="#">
+						<i class="icon-Clipboard-check"><span class="path1"></span><span class="path2"></span><span class="path3"></span></i>
+						<span>Order</span>
+						<span class="pull-right-container">
+							<i class="fa fa-angle-right pull-right"></i>
+						</span>
+						</a>
+						<ul class="treeview-menu">
+						<li><a href="{{ route('orders.list') }}"><i class="icon-Commit"><span class="path1"></span><span class="path2"></span></i>Order List</a></li>
+						{{-- <li><a href="order_details.html"><i class="icon-Commit"><span class="path1"></span><span class="path2"></span></i>Order Details</a></li> --}}
+						</ul>
+					</li>
+				@endif
+
 				@if(view_permission('company'))
 					<li class="treeview">
 						<a href="#">

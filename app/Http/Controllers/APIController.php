@@ -8,6 +8,7 @@ use App\Models\Product;
 use App\Models\Category;
 use App\Models\Company; 
 use App\Models\OptionValue;
+use App\Models\OrderDetail;
 use Illuminate\Http\Request;
 use Illuminate\Http\JsonResponse;
 use App\Models\RestaurantSchedule;
@@ -190,19 +191,46 @@ class APIController extends Controller
 
     public function order_process(Request $request)
     {
-        return 'order received on backend but not save yet';
+        $response = validate_token($request->header('Authorization'));
         
-        $order = new Order();
+        $responseData = $response->getData();
 
-        $order->name            = $request->name;
-        $order->email           = $request->email;
-        $order->phone           = $request->phone;
-        $order->address         = $request->address;
-        $order->total           = $request->total;
-        $order->order_type      = $request->order_type;
-        $order->payment_option  = $request->payment_option;
+        if($responseData->status == 'success'){
+            $order = new Order();
 
-        $order->save();
-        
+            $order->company_id      = $responseData->company->id;
+            $order->name            = $request->name;
+            $order->email           = $request->email;
+            $order->phone           = $request->phone;
+            $order->address         = $request->address;
+            $order->total           = $request->cartTotal;
+            $order->order_type      = $request->orderType;
+            $order->payment_option  = $request->paymentOption;
+
+            $order->save();
+            $orderId = $order->id;
+
+            if($orderId){
+                $orderItems = $request->cartItems;
+                foreach($orderItems as $orderItem){
+                    $orderDetail = new OrderDetail();
+
+                    $orderDetail->order_id = $orderId;
+                    $orderDetail->product_id = $orderItem['productId'];
+                    $orderDetail->product_title = $orderItem['productTitle'];
+                    $orderDetail->product_price = $orderItem['productPrice'];
+                    $orderDetail->quantity = $orderItem['quantity'];
+                    $orderDetail->sub_total = $orderItem['rowTotal'];
+                    $orderDetail->options = implode(',', $orderItem['optionNames']);
+
+                    $orderDetail->save();
+                }
+            }
+
+            return response()->json(['status' => 'success', 'message' => 'Order Placed Successfully', 'orderId' => $orderId], 200);
+        }
+        else{
+            return response()->json(['status' => $responseData->status, 'message' => $responseData->message], 401);
+        }
     }
 }
