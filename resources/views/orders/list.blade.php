@@ -53,7 +53,7 @@
                                 <tbody>
                                     @foreach ($orders as $order)
                                         <tr class="hover-primary">
-                                            <td>#{{$order->id}}</td>
+                                            <td><a href="{{ route('orders.detail', ["id" => base64_encode($order->id) ]) }}" target="_blank"> #{{ $order->id }} </a></td>
                                             {{-- <td>14 April 2021,<span class="fs-12"> 03:13 AM</span></td> --}}
                                             <td>{{ $order->created_at }}</td>
                                             <td>{{ $order->name }}</td>

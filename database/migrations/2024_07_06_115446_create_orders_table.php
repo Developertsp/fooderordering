@@ -21,6 +21,7 @@ return new class extends Migration
             $table->decimal('total', 8, 2);
             $table->string('order_type');
             $table->string('payment_option');
+            $table->text('order_note')->nullable();
             $table->timestamps();
         });
     }

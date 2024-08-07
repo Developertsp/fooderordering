@@ -70,6 +70,7 @@ Route::group(['middleware' => ['auth']], function(){
 
     // Orders Routes
     Route::get('orders/list', [OrderController::class, 'index'])->name('orders.list');
+    Route::get('orders/detail/{id}', [OrderController::class, 'detail'])->name('orders.detail');
 
     Route::get('/productsByCategory', [ProductController::class, 'productsByCategory'])->name('products.by.category');
 

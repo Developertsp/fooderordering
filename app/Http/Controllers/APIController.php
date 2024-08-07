@@ -206,6 +206,7 @@ class APIController extends Controller
             $order->total           = $request->cartTotal;
             $order->order_type      = $request->orderType;
             $order->payment_option  = $request->paymentOption;
+            $order->order_note      = $request->orderNote;
 
             $order->save();
             $orderId = $order->id;
