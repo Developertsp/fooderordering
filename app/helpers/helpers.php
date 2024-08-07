@@ -31,6 +31,7 @@ function view_permission($page_name = null)
                 case 'options':
                 case 'categories':
                 case 'menu':
+                case 'orders':
                     return true;
                 default:
                     return false;
