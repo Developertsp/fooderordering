@@ -42,7 +42,7 @@ class CategoriesTableSeeder extends Seeder
             'icon_file'        => 'assets/dummydata/pizza.jpeg',
             'background_image' => 'assets/dummydata/pizza.jpeg',
             'parent_id'        => 1, 
-            'company_id'       => null,
+            'company_id'       => 1,
             'created_by'       => $user->id,
             'updated_by'       => $user->id,
         ]);
