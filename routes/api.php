@@ -3,6 +3,8 @@
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\APIController;
+use App\Http\Controllers\PaymentController;
+
 
 // Route::get('/user', function (Request $request) {
 //     return $request->user();
@@ -18,3 +20,4 @@ Route::get('options/detail', [APIController::class, 'get_option_value_detail']);
 Route::post('orders/process', [APIController::class, 'order_process']);
 
 
+Route::post('/charge', [PaymentController::class, 'charge']);
