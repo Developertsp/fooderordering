@@ -46,31 +46,6 @@ class PaymentController extends Controller
                 ]);
             }
     
-            \Log::info('Saving Transaction: ', [
-                'stripe_payment_intent_id' => $paymentIntent ? $paymentIntent->id : null,
-                'amount' => $validatedData['cartTotal'],
-                'currency' => 'usd',
-                'status' => $paymentIntent ? $paymentIntent->status : 'no_payment',
-            ]);
-    
-            // Store transaction
-            Transaction::create([
-                'stripe_payment_intent_id' => $paymentIntent ? $paymentIntent->id : null,
-                'amount' => $validatedData['cartTotal'],
-                'currency' => 'usd',
-                'status' => $paymentIntent ? $paymentIntent->status : 'no_payment',
-            ]);
-    
-            \Log::info('Order Created: ', [
-                'company_id' => 1,
-                'name' => $validatedData['name'],
-                'email' => $validatedData['email'],
-                'phone' => $validatedData['phone'],
-                'address' => $validatedData['address'],
-                'total' => $validatedData['cartTotal'],
-                'order_type' => $validatedData['orderType'],
-            ]);
-    
             // Store order
             $order = new Order();
             $order->company_id = 1; // Adjust accordingly
@@ -83,8 +58,16 @@ class PaymentController extends Controller
             $order->payment_option = $validatedData['paymentOption'];
             $order->save();
             $orderId = $order->id;
+
+            // Store transaction
+            Transaction::create([
+                'stripe_payment_intent_id' => $paymentIntent ? $paymentIntent->id : null,
+                'amount' => $validatedData['cartTotal'],
+                'currency' => 'usd',
+                'status' => $paymentIntent ? $paymentIntent->status : 'no_payment',
+                'order_id' => $orderId,
+            ]);
     
-            \Log::info('Order ID: ', ['order_id' => $order->id]);
     
             foreach ($validatedData['cartItems'] as $item) {
                 \Log::info('Saving OrderDetail: ', [

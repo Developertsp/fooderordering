@@ -13,6 +13,7 @@ class Transaction extends Model
         'stripe_payment_intent_id',
         'amount',
         'currency',
+        'order_id',
     ];
 }
 
